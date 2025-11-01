@@ -1,0 +1,26 @@
+{
+  "FolderOrderSettings":[
+    {"name":"Animation Curves","order":11,"path":"folders/Animation Curves.yy",},
+    {"name":"Extensions","order":13,"path":"folders/Extensions.yy",},
+    {"name":"Fonts","order":6,"path":"folders/Fonts.yy",},
+    {"name":"Notes","order":12,"path":"folders/Notes.yy",},
+    {"name":"Objects","order":8,"path":"folders/Objects.yy",},
+    {"name":"Particle Systems","order":14,"path":"folders/Particle Systems.yy",},
+    {"name":"Paths","order":3,"path":"folders/Paths.yy",},
+    {"name":"Rooms","order":9,"path":"folders/Rooms.yy",},
+    {"name":"Scripts","order":4,"path":"folders/Scripts.yy",},
+    {"name":"Sequences","order":10,"path":"folders/Sequences.yy",},
+    {"name":"Shaders","order":5,"path":"folders/Shaders.yy",},
+    {"name":"Sounds","order":2,"path":"folders/Sounds.yy",},
+    {"name":"Tile Sets","order":1,"path":"folders/Tile Sets.yy",},
+    {"name":"Timelines","order":7,"path":"folders/Timelines.yy",},
+  ],
+  "ResourceOrderSettings":[
+    {"name":"obj_billboard","order":2,"path":"objects/obj_billboard/obj_billboard.yy",},
+    {"name":"obj_player","order":1,"path":"objects/obj_player/obj_player.yy",},
+    {"name":"draw_sprite_billboard","order":1,"path":"scripts/draw_sprite_billboard/draw_sprite_billboard.yy",},
+    {"name":"spr_billboard","order":1,"path":"sprites/spr_billboard/spr_billboard.yy",},
+    {"name":"spr_grass","order":3,"path":"sprites/spr_grass/spr_grass.yy",},
+    {"name":"spr_heart","order":2,"path":"sprites/spr_heart/spr_heart.yy",},
+  ],
+}
