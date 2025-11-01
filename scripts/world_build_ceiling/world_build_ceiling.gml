@@ -9,13 +9,14 @@ function world_build_ceiling() {
         global.VFMT_FLAT = vertex_format_end();
     }
 
+    // free old
     if (variable_global_exists("VB_CEILING") && global.VB_CEILING != -1) {
         vertex_delete_buffer(global.VB_CEILING);
     }
 
-    var k    = 50;
-    var cell = 128;
-    var zc   = 256;
+    var k    = 50;     // match obj_camera ground tiling
+    var cell = 128;    // match obj_camera ground size
+    var zc   = 256;    // ceiling height (tweak as you like)
 
     var CEIL_COLOR = variable_global_exists("WALL_COLOR") ? global.WALL_COLOR : c_gray;
 
@@ -59,5 +60,5 @@ function world_build_ceiling() {
 
     vertex_end(vb);
     global.VB_CEILING = vb;
-    global.CEILING_TEX = -1;
+    global.CEILING_TEX = -1; // color-only; plug a texture if desired
 }
