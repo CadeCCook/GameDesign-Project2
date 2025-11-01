@@ -15,27 +15,28 @@ if (mouse_lock) {
 	var dy = 0;
 
 	if (keyboard_check(ord("A"))) {
-	    x -= dsin(look_dir) * move_speed;
-	    y -= dcos(look_dir) * move_speed;
+	    dx -= dsin(look_dir) * move_speed;
+	    dy -= dcos(look_dir) * move_speed;
 	}
 
 	if (keyboard_check(ord("D"))) {
-	    x += dsin(look_dir) * move_speed;
-	    y += dcos(look_dir) * move_speed;
+	    dx += dsin(look_dir) * move_speed;
+	    dy += dcos(look_dir) * move_speed;
 	}
 
 	if (keyboard_check(ord("W"))) {
-	    x += dcos(look_dir) * move_speed;
-	    y -= dsin(look_dir) * move_speed;
+	    dx += dcos(look_dir) * move_speed;
+	    dy -= dsin(look_dir) * move_speed;
 	}
 
 	if (keyboard_check(ord("S"))) {
-	    x -= dcos(look_dir) * move_speed;
-	    y += dsin(look_dir) * move_speed;
+	    dx -= dcos(look_dir) * move_speed;
+	    dy += dsin(look_dir) * move_speed;
 	}
 
-	x += dx;
-	y += dy;
+	var _moved = world_collision_move(x, y, dx, dy, collide_radius);
+	x = _moved[0];
+	y = _moved[1];
 }
 if (keyboard_check_pressed(vk_tab)) {
 	mouse_lock = !mouse_lock;

@@ -22,7 +22,9 @@ vertex_submit(vbuffer, pr_trianglelist, sprite_get_texture(spr_grass, 0));
 
 shader_reset();
 
-with (obj_billboard) {
-	event_perform(ev_draw, 0);
-}
+// Draw walls + ceiling
+world_draw_walls();
+world_draw_ceiling();
 
+// Sorted billboard pass
+billboard_draw_sorted();
