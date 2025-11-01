@@ -18,11 +18,17 @@ camera_set_proj_mat(camera, proj_mat);
 camera_apply(camera);
 
 // Everything must be drawn after the 3D projection has been set
-vertex_submit(vbuffer, pr_trianglelist, sprite_get_texture(spr_grass, 0));
+gpu_set_texrepeat(true);
+vertex_submit(vbuffer, pr_trianglelist, ground_tex);
+gpu_set_texrepeat(false);
 
 shader_reset();
 
-with (obj_billboard) {
-	event_perform(ev_draw, 0);
-}
+
+world_draw_walls();
+world_draw_ceiling();
+
+// Sorted billboard pass
+billboard_draw_sorted();
+
 

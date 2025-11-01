@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"world_pos_to_cell",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"world_pos_to_cell",
+  "parent":{
+    "name":"Scripts",
+    "path":"folders/Scripts.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

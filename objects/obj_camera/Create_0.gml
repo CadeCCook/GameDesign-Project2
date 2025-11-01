@@ -47,30 +47,25 @@ vertex_add_point(vbuffer, x1, y2, 100,	0, 0, 1,	0, 0,	c_blue, 1);
 vertex_add_point(vbuffer, x1, y1, 100,	0, 0, 1,	0, 0,	c_blue, 1);
 */
 
-var s = 128
-for(var i = 0; i < room_width; i += s) {
-	for(var j = 0; j < room_height; j += s) {
-		if((i % (s * 2) == 0 && j % (s * 2) == 0) || (i % (s * 2) > 0 && j % (s * 2) > 0)){
-			var color = c_aqua
-		} else {
-			var color = c_white
-		}
-		
-		//triangle 1
-		vertex_add_point(vbuffer, i,	j,		0,	0, 0, 1,	0, 0,	color, 1);
-		vertex_add_point(vbuffer, i+s,	j,		0,	0, 0, 1,	1, 0,	color, 1);
-		vertex_add_point(vbuffer, i+s,	j+s,	0,	0, 0, 1,	1, 1,	color, 1);
-												
-		//triangle 2							 
-		vertex_add_point(vbuffer, i+s,	j+s,	0,	0, 0, 1,	1, 1,	color, 1);
-		vertex_add_point(vbuffer, i,	j+s,	0,	0, 0, 1,	0, 1,	color, 1);
-		vertex_add_point(vbuffer, i,	j,		0,	0, 0, 1,	0, 0,	color, 1);
-		
-	}
-}
+var s = 128;                 // tile size
+var extent = 8192;           // half-size of the floor in world
+for (var i = -extent; i < extent; i += s) {     //changed so floor is generated for whole map and doesnt have to be set
+    for (var j = -extent; j < extent; j += s) {
+        var color = c_white;
 
+        // triangle 1
+        vertex_add_point(vbuffer, i,   j,   0,   0,0,1,  0,0,  color, 1);
+        vertex_add_point(vbuffer, i+s, j,   0,   0,0,1,  1,0,  color, 1);
+        vertex_add_point(vbuffer, i+s, j+s, 0,   0,0,1,  1,1,  color, 1);
+
+        // triangle 2
+        vertex_add_point(vbuffer, i+s, j+s, 0,   0,0,1,  1,1,  color, 1);
+        vertex_add_point(vbuffer, i,   j+s, 0,   0,0,1,  0,1,  color, 1);
+        vertex_add_point(vbuffer, i,   j,   0,   0,0,1,  0,0,  color, 1);
+    }
+}
 vertex_end(vbuffer); //basically "seals up" the vertex buffer for the computer to draw
 
-
+ground_tex = sprite_get_texture(spr_grass, 0);
 
 instance_create_depth(x, y, 0, obj_player);

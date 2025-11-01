@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"world_draw_ceiling",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"world_draw_ceiling",
+  "parent":{
+    "name":"Scripts",
+    "path":"folders/Scripts.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}
