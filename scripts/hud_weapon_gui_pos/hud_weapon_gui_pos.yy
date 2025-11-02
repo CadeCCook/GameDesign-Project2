@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"hud_weapon_gui_pos",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"hud_weapon_gui_pos",
+  "parent":{
+    "name":"Scripts",
+    "path":"folders/Scripts.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

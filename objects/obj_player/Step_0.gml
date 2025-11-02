@@ -38,6 +38,31 @@ if (mouse_lock) {
 	x = _moved[0];
 	y = _moved[1];
 }
+
+// --- Sword swing ---
+if (swing_timer > 0) swing_timer -= 1;
+
+if (mouse_check_button_pressed(mb_left) && swing_timer <= 0) {
+    swing_timer = sword_cooldown;
+
+    // apply damage
+    var hits = melee_hit_cone(x, y, look_dir,
+                              sword_range,
+                              sword_half_angle,
+                              sword_damage,
+                              sword_knockback);
+
+    // only show slash if we hit at least one enemy
+    if (hits > 0) {
+        // GUI slash arc (bigger size set in obj_hud/obj_slash_fx already)
+        instance_create_depth(0, 0, 0, obj_slash_fx);
+
+        // optional: reuse flash only on hit
+        global.muzzle_timer = 4;
+    }
+}
+
+
 if (keyboard_check_pressed(vk_tab)) {
 	mouse_lock = !mouse_lock;
 }

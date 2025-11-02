@@ -69,3 +69,5 @@ vertex_end(vbuffer); //basically "seals up" the vertex buffer for the computer t
 ground_tex = sprite_get_texture(spr_grass, 0);
 
 instance_create_depth(x, y, 0, obj_player);
+
+instance_create_depth(x, y, 0,obj_hud);

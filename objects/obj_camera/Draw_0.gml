@@ -17,6 +17,12 @@ camera_set_view_mat(camera, view_mat);
 camera_set_proj_mat(camera, proj_mat);
 camera_apply(camera);
 
+//fog, mainly test might implement onto more later
+
+var fog_col = c_grey;
+gpu_set_fog(true, fog_col, 1200, 8000);
+
+
 // Everything must be drawn after the 3D projection has been set
 gpu_set_texrepeat(true);
 vertex_submit(vbuffer, pr_trianglelist, ground_tex);

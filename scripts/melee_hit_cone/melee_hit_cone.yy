@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"melee_hit_cone",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"melee_hit_cone",
+  "parent":{
+    "name":"Scripts",
+    "path":"folders/Scripts.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}
