@@ -14,3 +14,8 @@ sword_damage      = 25;
 sword_knockback   = 8;     // pixels pushed on hit
 sword_cooldown    = 16;    // frames between swings
 swing_timer       = 0;     // counts down after a swing
+
+vz              = 0;      // vertical velocity
+gravity_accel   = -0.9;   // negative pulls you “down” (toward smaller z)
+floor_z         = 64;     // height of walkable floor
+death_height    = -200;   // fall below this => die

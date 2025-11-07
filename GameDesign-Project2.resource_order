@@ -18,6 +18,7 @@
   "ResourceOrderSettings":[
     {"name":"obj_billboard","order":2,"path":"objects/obj_billboard/obj_billboard.yy",},
     {"name":"obj_hud","order":4,"path":"objects/obj_hud/obj_hud.yy",},
+    {"name":"obj_pit","order":6,"path":"objects/obj_pit/obj_pit.yy",},
     {"name":"obj_player","order":1,"path":"objects/obj_player/obj_player.yy",},
     {"name":"obj_slash_fx","order":5,"path":"objects/obj_slash_fx/obj_slash_fx.yy",},
     {"name":"obj_world","order":3,"path":"objects/obj_world/obj_world.yy",},
@@ -38,6 +39,7 @@
     {"name":"spr_billboard","order":1,"path":"sprites/spr_billboard/spr_billboard.yy",},
     {"name":"spr_grass","order":3,"path":"sprites/spr_grass/spr_grass.yy",},
     {"name":"spr_heart","order":2,"path":"sprites/spr_heart/spr_heart.yy",},
+    {"name":"spr_pit","order":6,"path":"sprites/spr_pit/spr_pit.yy",},
     {"name":"spr_slash","order":5,"path":"sprites/spr_slash/spr_slash.yy",},
     {"name":"spr_sword","order":4,"path":"sprites/spr_sword/spr_sword.yy",},
   ],

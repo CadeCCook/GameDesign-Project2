@@ -1,14 +1,13 @@
 /// @description Insert description here
 if (mouse_lock) {
-	look_dir -= (window_mouse_get_x() - window_get_width() / 2) / 10;
-	look_pitch += (window_mouse_get_y() - window_get_height() / 2) / 10;
-	look_pitch = clamp(look_pitch, -80, 80);
+    look_dir -= (window_mouse_get_x() - window_get_width() / 2) / 10;
+    look_pitch += (window_mouse_get_y() - window_get_height() / 2) / 10;
+    look_pitch = clamp(look_pitch, -80, 80);
+    window_mouse_set(window_get_width() / 2, window_get_height() / 2);
 
-	window_mouse_set(window_get_width() / 2, window_get_height() / 2);
-
-	if (keyboard_check_direct(vk_escape)) {
-	    game_end();
-	}
+    if (keyboard_check_direct(vk_escape)) {
+        game_end();
+    }
 
 	var move_speed = 4;
 	var dx = 0;
@@ -62,6 +61,38 @@ if (mouse_check_button_pressed(mb_left) && swing_timer <= 0) {
     }
 }
 
+// ================== NEW: PITS + GRAVITY ==================
+//
+// We treat any area covered by instances of obj_pit as "no floor".
+// Place obj_pit rectangles where you want holes.
+// If the player is over a pit, they free-fall. Otherwise they snap to floor_z.
+
+var over_pit = (instance_position(x, y, obj_pit) != noone);
+
+// Apply gravity
+if (over_pit) {
+    // Free fall
+    vz += gravity_accel;
+    z  += vz;
+} else {
+    // On floor – settle on floor height
+    if (z > floor_z) {
+        // If somehow above floor, let gravity pull us down to it smoothly
+        vz += gravity_accel;
+        z  += vz;
+        if (z <= floor_z) { z = floor_z; vz = 0; }
+    } else {
+        // Locked to the floor
+        z = floor_z;
+        vz = 0;
+    }
+}
+
+// Death if we fell too far
+if (z < death_height) {
+    // Simple: restart room. Replace with your own respawn/HP logic if desired.
+    room_restart();
+}
 
 if (keyboard_check_pressed(vk_tab)) {
 	mouse_lock = !mouse_lock;
