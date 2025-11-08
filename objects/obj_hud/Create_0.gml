@@ -1,9 +1,30 @@
-// Tuning knobs
-global.HUD_WEAPON_SCALE = 5;  // ← 5x bigger sword
-global.SLASH_SCALE      = 5;  // ← 5x bigger slash FX
+// ===== obj_hud : Create =====
 
-// existing
-weapon_xoff = 0;
-weapon_yoff = 0;
-bobbing_t   = 0;
-if (!variable_global_exists("muzzle_timer")) global.muzzle_timer = 0;
+// Knife HUD (idle + swing)
+knife_sprite   = spr_knife;    // exact resource
+knife_frames   = sprite_get_number(knife_sprite);
+weapon_scale   = (variable_global_exists("HUD_WEAPON_SCALE") ? global.HUD_WEAPON_SCALE : 0.55);
+base_margin_x  = 140;
+base_margin_y  = 120;
+
+attack_duration = 0.45;   // seconds per swing
+attack_timer    = 0;
+is_attacking    = false;
+sub             = 0;
+
+// Bob timer used by hud_weapon_gui_pos()
+if (!variable_global_exists("hud_t")) global.hud_t = 0;
+
+// Sync animation with player trigger
+listen_for_trigger = true;
+
+// ===== Reticle settings =====
+reticle_enabled   = true;
+reticle_color     = c_white;
+reticle_alpha     = 0.9;
+reticle_thickness = 2;     // line width (px)
+reticle_length    = 8;     // each arm length (px)
+reticle_gap       = 4;     // gap around center (px)
+reticle_dot_radius = 0;    // set >0 to draw a small center dot
+
+

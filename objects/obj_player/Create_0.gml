@@ -19,3 +19,13 @@ vz              = 0;      // vertical velocity
 gravity_accel   = -0.9;   // negative pulls you “down” (toward smaller z)
 floor_z         = 64;     // height of walkable floor
 death_height    = -200;   // fall below this => die
+
+// Prevent an immediate swing/FX on room start
+attack_armed = false;
+
+// Reset any globals that might carry across rooms
+global.hud_attack_trigger = false;
+
+// (already have) ensure HUD exists + default scale if you want
+if (!instance_exists(obj_hud)) instance_create_layer(0,0,"Instances",obj_hud);
+if (!variable_global_exists("HUD_WEAPON_SCALE")) global.HUD_WEAPON_SCALE = 0.55;

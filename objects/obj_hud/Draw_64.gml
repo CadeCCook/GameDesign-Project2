@@ -1,52 +1,71 @@
-// --- FORCE CLEAN 2D GUI STATE ---
-shader_reset();
-gpu_set_fog(false, make_colour_rgb(0,0,0), 0, 0); // ensure world fog doesn't touch GUI
-gpu_set_blendenable(true);
-gpu_set_blendmode(bm_normal);
-draw_set_alpha(1);
-draw_set_color(c_white);
+// ===== obj_hud : Draw GUI =====
+gui_reset_hard();   // our safe reset (no blue rectangle anymore)
 
-// Screen size
-var sw = display_get_gui_width();
-var sh = display_get_gui_height();
+// ---------- Reticle (center of screen) ----------
+if (reticle_enabled) {
+    var gw = display_get_gui_width();
+    var gh = display_get_gui_height();
+    var cx = gw * 0.5;
+    var cy = gh * 0.5;
 
-// Tiny debug so we know HUD is drawing:
-draw_text(16, 16, "HUD: OK");
+    draw_set_alpha(reticle_alpha);
+    draw_set_color(reticle_color);
 
-// Idle bob
-if (!variable_global_exists("hud_t")) global.hud_t = 0;
-global.hud_t += 0.15;
-var bob_x = 4 * sin(global.hud_t);
-var bob_y = 3 * cos(global.hud_t * 1.7);
+    // optional center dot
+    if (reticle_dot_radius > 0) {
+        draw_circle(cx, cy, reticle_dot_radius, false);
+    }
 
-// Swing angle from player timer (no smoothstep, manual ease)
-var swing_angle = 0;
-if (instance_exists(obj_player)) {
-    var p = 1 - (obj_player.swing_timer / max(1, obj_player.sword_cooldown));
-    p = clamp(p, 0, 1);
-    var t = clamp((p - 0.0) / max(0.0001, 0.5 - 0.0), 0, 1);
-    t = t * t * (3 - 2 * t); // smoothstep
-    swing_angle = lerp(-50, 35, t);
-}
+    // crosshair arms
+    var g = reticle_gap;
+    var L = reticle_length;
+    var T = reticle_thickness;
 
-var pos = hud_weapon_gui_pos();
-var wx = pos[0];
-var wy = pos[1];
+    // horizontal
+    draw_line_width(cx - (g + L), cy, cx - g, cy, T);
+    draw_line_width(cx + g,       cy, cx + (g + L), cy, T);
+    // vertical
+    draw_line_width(cx, cy - (g + L), cx, cy - g, T);
+    draw_line_width(cx, cy + g,       cx, cy + (g + L), T);
 
-// draw the sword with scale
-if (sprite_exists(spr_sword)) {
-    var sc = global.HUD_WEAPON_SCALE;           // 5x
-    draw_sprite_ext(spr_sword, 0, wx, wy, sc, sc, swing_angle, c_white, 1);
-} else {
-    // Placeholder blade so you still see something
+    draw_set_alpha(1);
     draw_set_color(c_white);
-    draw_rectangle(wx-6, wy-80, wx+6, wy+40, false);
-    draw_line(wx-6, wy-80, wx+6, wy-80);
-    draw_text(16, 32, "Sword: placeholder (spr_sword missing)");
 }
 
-// Crosshair
-draw_set_color(c_white);
-draw_line(sw*0.5-6, sh*0.5,   sw*0.5+6, sh*0.5);
-draw_line(sw*0.5,   sh*0.5-6, sw*0.5,   sh*0.5+6);
+// ---------- Knife (idle/swing), clamped on-screen ----------
+var gw = display_get_gui_width();
+var gh = display_get_gui_height();
+var pad = 8;
+
+if (!sprite_exists(knife_sprite)) exit;
+
+var p = hud_weapon_gui_pos();
+var wx = p[0], wy = p[1];
+
+var sc = weapon_scale;
+var w  = sprite_get_width(knife_sprite);
+var h  = sprite_get_height(knife_sprite);
+var ox = sprite_get_xoffset(knife_sprite);
+var oy = sprite_get_yoffset(knife_sprite);
+
+// Fit & clamp so it never goes off-screen
+var draw_x = wx - ox * sc, draw_y = wy - oy * sc;
+var draw_w = w * sc,       draw_h = h * sc;
+var max_w = gw - 2*pad,    max_h = gh - 2*pad;
+
+if (draw_w > max_w || draw_h > max_h) {
+    var fit = min(max_w / max(1, draw_w), max_h / max(1, draw_h));
+    sc = sc * fit;
+    draw_x = wx - ox * sc; draw_y = wy - oy * sc;
+    draw_w = w * sc;       draw_h = h * sc;
+}
+if (draw_x < pad)             wx += (pad - draw_x);
+if (draw_y < pad)             wy += (pad - draw_y);
+if (draw_x + draw_w > gw-pad) wx -= (draw_x + draw_w - (gw - pad));
+if (draw_y + draw_h > gh-pad) wy -= (draw_y + draw_h - (gh - pad));
+draw_x = wx - ox * sc; draw_y = wy - oy * sc;
+
+// Draw current knife frame (sub set in Step)
+draw_sprite_ext(knife_sprite, sub, draw_x, draw_y, sc, sc, 0, c_white, 1);
+
 

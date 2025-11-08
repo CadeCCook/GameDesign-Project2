@@ -39,33 +39,40 @@ if (mouse_lock) {
 }
 
 // --- Sword swing ---
+// 1) Arm after first mouse release to avoid startup fire
+if (!attack_armed) {
+    if (!mouse_check_button(mb_left)) attack_armed = true;
+}
+
+// 2) Standard cooldown
 if (swing_timer > 0) swing_timer -= 1;
 
-if (mouse_check_button_pressed(mb_left) && swing_timer <= 0) {
+// 3) Only allow swings once armed
+if (attack_armed && mouse_check_button_pressed(mb_left) && swing_timer <= 0) {
     swing_timer = sword_cooldown;
 
-    // apply damage
+    // HUD knife anim always starts
+    global.hud_attack_trigger = true;
+
+    // Apply damage
     var hits = melee_hit_cone(x, y, look_dir,
                               sword_range,
                               sword_half_angle,
                               sword_damage,
                               sword_knockback);
 
-    // only show slash if we hit at least one enemy
+    // Slash FX ONLY when we hit something
     if (hits > 0) {
-        // GUI slash arc (bigger size set in obj_hud/obj_slash_fx already)
-        instance_create_depth(0, 0, 0, obj_slash_fx);
-
-        // optional: reuse flash only on hit
-        global.muzzle_timer = 4;
+        var fx = instance_create_layer(0, 0, "Instances", obj_slash_fx);
+        fx.use_reticle = true;  // center on reticle
+        // fx.slash_mult = 10.0; // (optional) size override
     }
 }
 
-// ================== NEW: PITS + GRAVITY ==================
-//
-// We treat any area covered by instances of obj_pit as "no floor".
+//pit and grav
+
 // Place obj_pit rectangles where you want holes.
-// If the player is over a pit, they free-fall. Otherwise they snap to floor_z.
+// If the player is over a pit, they free-fall.
 
 var over_pit = (instance_position(x, y, obj_pit) != noone);
 
@@ -75,9 +82,8 @@ if (over_pit) {
     vz += gravity_accel;
     z  += vz;
 } else {
-    // On floor – settle on floor height
     if (z > floor_z) {
-        // If somehow above floor, let gravity pull us down to it smoothly
+        // If somehow above floor, let gravity work
         vz += gravity_accel;
         z  += vz;
         if (z <= floor_z) { z = floor_z; vz = 0; }
@@ -88,9 +94,8 @@ if (over_pit) {
     }
 }
 
-// Death if we fell too far
+// Death if the player falls
 if (z < death_height) {
-    // Simple: restart room. Replace with your own respawn/HP logic if desired.
     room_restart();
 }
 

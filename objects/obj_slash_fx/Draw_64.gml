@@ -1,49 +1,55 @@
-// Clean GUI state
-shader_reset();
-gpu_set_fog(false, make_colour_rgb(0,0,0), 0, 0);
-gpu_set_blendenable(true);
+// === obj_slash_fx : Draw GUI (reticle-centered) ===
+gui_reset_hard();                   // keep HUD colors/blending sane
+gpu_set_blendmode(bm_add);         // additive looks good for slashes
 
-// Additive looks great for slashes; switch back after drawing
-gpu_set_blendmode(bm_add);
+// 1) Choose anchor in GUI
+var gw = display_get_gui_width();
+var gh = display_get_gui_height();
 
-// Where the weapon is *this frame*
-var pos = hud_weapon_gui_pos();
-var wx = pos[0];
-var wy = pos[1];
-
-// Progress 0..1
-var p = clamp(t / max(1, duration), 0, 1);
-
-// Ease (cubic smoothstep)
-var s = p * p * (3.0 - 2.0 * p);
-
-var ang = lerp(angle_start, angle_end, s);
-var sc  = lerp(scale_start, scale_end, s);
-sc *= base_scale;
-
-// FIX: use power() instead of pow()
-var a   = power(1.0 - p, alpha_pow);  // fade out
-
-draw_set_color(tint);
-draw_set_alpha(a);
-
-if (sprite_exists(spr_slash)) {
-    var frames = sprite_get_number(spr_slash);
-    var frame  = clamp(floor(s * frames), 0, max(0, frames - 1));
-    draw_sprite_ext(spr_slash, frame, wx, wy, sc, sc, ang, c_white, a);
+var wx, wy;
+if (use_reticle) {
+    wx = gw * 0.5;
+    wy = gh * 0.5;
 } else {
-    // Placeholder wedge if you haven't imported the sprite yet
-    var r = 64 * sc;
-    draw_triangle_color(
-        wx, wy,
-        wx + lengthdir_x(r, ang-20), wy + lengthdir_y(r, ang-20),
-        wx + lengthdir_x(r, ang+20), wy + lengthdir_y(r, ang+20),
-        c_white, c_white, c_white, false
-    );
+    var p = hud_weapon_gui_pos();
+    wx = p[0]; wy = p[1];
 }
 
-// Restore state
-draw_set_alpha(1);
-draw_set_color(c_white);
-gpu_set_blendmode(bm_normal);
+// 2) Progress + big scale
+var p = clamp(t / max(1, duration), 0, 1);
+t += 1; if (t >= duration) instance_destroy();
 
+var sc_base = (variable_global_exists("HUD_WEAPON_SCALE") ? global.HUD_WEAPON_SCALE : 0.55);
+var sc      = sc_base * slash_mult * lerp(1.00, 1.08, p);
+var ang     = lerp(angle_start, angle_end, p);
+
+// 3) Draw the slash EXACTLY centered on (wx, wy), no matter the sprite origin
+if (sprite_exists(slash_sprite)) {
+    var w  = sprite_get_width(slash_sprite);
+    var h  = sprite_get_height(slash_sprite);
+    var ox = sprite_get_xoffset(slash_sprite);
+    var oy = sprite_get_yoffset(slash_sprite);
+
+    // desired pivot is sprite center (px,py)
+    var px = w * 0.5;
+    var py = h * 0.5;
+
+    // rotate the vector from origin->center so that (wx,wy) becomes the center pixel
+    var dx  = (px - ox) * sc;
+    var dy  = (py - oy) * sc;
+    var ca  = dcos(ang);
+    var sa  = dsin(ang);
+    var rx  = dx * ca - dy * sa;
+    var ry  = dx * sa + dy * ca;
+
+    // place origin so the rotated center lands on (wx,wy)
+    var draw_x = wx - rx;
+    var draw_y = wy - ry;
+
+    var a = power(1 - p, alpha_pow);
+    draw_set_alpha(a);
+    draw_sprite_ext(slash_sprite, 0, draw_x, draw_y, sc, sc, ang, c_white, 1);
+    draw_set_alpha(1);
+}
+
+gpu_set_blendmode(bm_normal);
