@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"world_persist",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"world_persist",
+  "parent":{
+    "name":"Scripts",
+    "path":"folders/Scripts.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

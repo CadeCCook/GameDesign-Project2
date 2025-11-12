@@ -18,6 +18,7 @@
   "ResourceOrderSettings":[
     {"name":"obj_billboard","order":2,"path":"objects/obj_billboard/obj_billboard.yy",},
     {"name":"obj_hud","order":4,"path":"objects/obj_hud/obj_hud.yy",},
+    {"name":"obj_minimap","order":7,"path":"objects/obj_minimap/obj_minimap.yy",},
     {"name":"obj_pit","order":6,"path":"objects/obj_pit/obj_pit.yy",},
     {"name":"obj_player","order":1,"path":"objects/obj_player/obj_player.yy",},
     {"name":"obj_slash_fx","order":5,"path":"objects/obj_slash_fx/obj_slash_fx.yy",},
@@ -35,7 +36,10 @@
     {"name":"world_collision_move","order":5,"path":"scripts/world_collision_move/world_collision_move.yy",},
     {"name":"world_draw_ceiling","order":10,"path":"scripts/world_draw_ceiling/world_draw_ceiling.yy",},
     {"name":"world_draw_walls","order":7,"path":"scripts/world_draw_walls/world_draw_walls.yy",},
+    {"name":"world_from_array","order":17,"path":"scripts/world_from_array/world_from_array.yy",},
+    {"name":"world_grid_helpers","order":16,"path":"scripts/world_grid_helpers/world_grid_helpers.yy",},
     {"name":"world_init","order":2,"path":"scripts/world_init/world_init.yy",},
+    {"name":"world_persist","order":18,"path":"scripts/world_persist/world_persist.yy",},
     {"name":"world_pos_to_cell","order":4,"path":"scripts/world_pos_to_cell/world_pos_to_cell.yy",},
     {"name":"spr_grass","order":2,"path":"sprites/spr_grass/spr_grass.yy",},
     {"name":"spr_heart","order":1,"path":"sprites/spr_heart/spr_heart.yy",},

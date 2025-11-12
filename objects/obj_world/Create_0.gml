@@ -1,5 +1,5 @@
 /// @description Initialize grid + walls once
-world_init();
+world_init(); // uses the new helper-based authoring
 
 global.WALL_HEIGHT    = 128;
 global.WALL_TEX_SCALE = 64;
@@ -15,3 +15,14 @@ if (wall_sprite != -1) {
 
 world_build_walls();
 world_build_ceiling();
+
+// Debug: confirm size at runtime
+show_debug_message("WORLD: " + string(global.WORLD_W) + " x " + string(global.WORLD_H)
+    + "  CELL=" + string(global.WORLD_CELL));
+
+// Optional: drop player near center if you enabled SPAWN hints in world_init()
+// with (instance_find(obj_player, 0)) {
+//     if (variable_global_exists("SPAWN_X")) { x = global.SPAWN_X; }
+//     if (variable_global_exists("SPAWN_Y")) { y = global.SPAWN_Y; }
+// }
+
