@@ -1,3 +1,4 @@
+// obj_minimap Step
 if (!active) exit;
 
 var W  = global.WORLD_W;
@@ -14,36 +15,18 @@ var gx = floor((mx - px) / sz);
 var gy = floor((my - py) / sz);
 var inside = (gx >= 0 && gx < W && gy >= 0 && gy < H);
 
-var edited = false;
-
 if (inside) {
     if (mouse_check_button_pressed(mb_left)) {
         world_set_wall(gx, gy);
         world_build_walls();
-        edited = true;
     }
     if (mouse_check_button_pressed(mb_right)) {
         world_clear_wall(gx, gy);
         world_build_walls();
-        edited = true;
     }
 }
 
-// Ctrl+C to dump array
+// Ctrl+C to dump array for pasting into LEVEL in world_init.gml
 if (keyboard_check(vk_control) && keyboard_check_pressed(ord("C"))) {
     world_grid_dump_array();
-}
-
-// Ctrl+S to force save
-if (keyboard_check(vk_control) && keyboard_check_pressed(ord("S"))) {
-    world_save("world_layout.txt");
-    show_debug_message("World saved (Ctrl+S).");
-}
-
-// Auto-save after edits
-if (edited) {
-    if (world_save("world_layout.txt")) {
-        // optional toast/debug
-        // show_debug_message("World saved.");
-    }
 }

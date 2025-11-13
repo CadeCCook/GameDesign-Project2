@@ -1,21 +1,24 @@
 function world_init() {
-    // --- Scale ---
-    global.WORLD_CELL = 128;
+    // --- Grid scale ---
+    global.WORLD_CELL = 128; // same feel as before
 
-    var SAVE_FILE = "world_layout.txt";
+    // ------------------------------------------------------------------
+    // MAP DEFINITION (EDIT THIS ARRAY)
+    //
+    //  - 1 = wall
+    //  - 0 = empty
+    //  - 24 rows x 32 columns  (H=24, W=32)
+    //
+    // When you’re happy with a layout in the minimap:
+    //   1) Press Ctrl+C in-game (world_grid_dump_array)
+    //   2) Paste the copied array over this LEVEL definition
+    //   3) Commit this file to GitHub
+    // ------------------------------------------------------------------
 
-    // Try to load a previously saved layout
-    if (world_load(SAVE_FILE)) {
-        // loaded WORLD_W/H/GRID from disk; we're done
-        return;
-    }
-
-    // ---------- Fallback: literal 2D array (edit this) ----------
-    // 24 rows x 32 cols (1=wall, 0=empty)
     var LEVEL = [
-        // Row 0 (top border)
+        // Row  0 (top border)
         [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
-        // Interior (edit freely)
+        // Rows 1..22 – interior (edit freely)
         [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
         [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
         [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
@@ -42,12 +45,10 @@ function world_init() {
         [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
     ];
 
+    // Build globals from that array
     world_from_array(LEVEL);
 
-    // (Optional) write the default once so first edits persist even after a crash
-    // world_save(SAVE_FILE);
+    // Optional spawn hint if you want:
+    // global.SPAWN_X = (global.WORLD_W * global.WORLD_CELL) * 0.5;
+    // global.SPAWN_Y = (global.WORLD_H * global.WORLD_CELL) * 0.5;
 }
-
-
-
-
