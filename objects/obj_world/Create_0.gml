@@ -1,4 +1,6 @@
 /// @description Initialize grid + walls once
+
+
 world_init(); // uses the new helper-based authoring
 
 global.WALL_HEIGHT    = 128;

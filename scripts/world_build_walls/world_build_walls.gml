@@ -40,6 +40,11 @@ function world_build_walls() {
 
     for (var jy = 0; jy < global.WORLD_H; jy++) {
         for (var ix = 0; ix < global.WORLD_W; ix++) {
+			// PIT tiles (value = 2)
+			if (global.WORLD_GRID[jy * global.WORLD_W + ix] == 2) {
+				instance_create_layer(ix * c, jy * c, "Instances", obj_pit);
+				continue;
+			}
             if (global.WORLD_GRID[jy * global.WORLD_W + ix] != 1) continue;
 
             var wx = ix * c;
