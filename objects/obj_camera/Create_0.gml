@@ -48,9 +48,7 @@ vertex_add_point(vbuffer, x1, y1, 100,	0, 0, 1,	0, 0,	c_blue, 1);
 */
 
 var LEVEL = [
-        // Row  0 (top border)
-        [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
-        // Rows 1..22 – interior (edit freely)
+  [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
   [1,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1],
   [1,0,0,0,0,0,0,0,1,0,0,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1],
   [1,0,0,0,0,2,0,0,1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
@@ -73,40 +71,42 @@ var LEVEL = [
   [1,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,1],
   [1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
   [1,0,0,0,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1],
-        // Row 23 (bottom border)
-        [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
+  [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
     ];
-	
+var rows = array_length(LEVEL);
+var cols = array_length(LEVEL[0]);	
 
-var s = 128;                 // tile size
-var extent = 8192;           // half-size of the floor in world
+
+
+var s    = 128;
+var rows = array_length(LEVEL);       // 24
+var cols = array_length(LEVEL[0]);    // 32
 var color = c_white;
-var length = 4096;
-var height = 3072;
-for (var i = 0; i < length; i += s) {     //changed so floor is generated for whole map and doesnt have to be set
-    for (var j = 0; j < height; j += s) {
-		
-		//xx = (i/128)-1;
-		//yy = (j/128) -1;
-		//if(i == 0 || j == 0){
-		//	xx = 0;
-			yy = 0;
-		//}
-        //if (LEVEL[xx][yy] != 2){
-		
-	        // triangle 1
-	        vertex_add_point(vbuffer, i,   j,   0,   0,0,1,  0,0,  color, 1);
-	        vertex_add_point(vbuffer, i+s, j,   0,   0,0,1,  1,0,  color, 1);
-	        vertex_add_point(vbuffer, i+s, j+s, 0,   0,0,1,  1,1,  color, 1);
 
-	        // triangle 2
-	        vertex_add_point(vbuffer, i+s, j+s, 0,   0,0,1,  1,1,  color, 1);
-	        vertex_add_point(vbuffer, i,   j+s, 0,   0,0,1,  0,1,  color, 1);
-	        vertex_add_point(vbuffer, i,   j,   0,   0,0,1,  0,0,  color, 1);
-		
-		//}
+for (var ty = 0; ty < rows; ty++) {        // ty = tile_y in LEVEL
+    for (var tx = 0; tx < cols; tx++) {    // tx = tile_x in LEVEL
+        
+        // Skip traps/holes
+		lx = min(ty+1, rows-1);
+		ly = min(tx+1, rows-1);
+        if (LEVEL[lx][ly] == 2) continue;
+
+        // Convert matrix indices -> world coordinates
+        var i = (tx + 1) * s;  // +1 tile offset from origin
+        var j = (ty + 1) * s;  // +1 tile offset from origin
+
+        // triangle 1
+        vertex_add_point(vbuffer, i,   j,   0,   0,0,1,  0,0,  color, 1);
+        vertex_add_point(vbuffer, i+s, j,   0,   0,0,1,  1,0,  color, 1);
+        vertex_add_point(vbuffer, i+s, j+s, 0,   0,0,1,  1,1,  color, 1);
+
+        // triangle 2
+        vertex_add_point(vbuffer, i+s, j+s, 0,   0,0,1,  1,1,  color, 1);
+        vertex_add_point(vbuffer, i,   j+s, 0,   0,0,1,  0,1,  color, 1);
+        vertex_add_point(vbuffer, i,   j,   0,   0,0,1,  0,0,  color, 1);
     }
 }
+
 vertex_end(vbuffer); //basically "seals up" the vertex buffer for the computer to draw
 
 ground_tex = sprite_get_texture(spr_grass, 0);

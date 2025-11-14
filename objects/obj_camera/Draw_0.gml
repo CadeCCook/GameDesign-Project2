@@ -1,5 +1,5 @@
 /// @description Draw the 3D world
-draw_clear(make_colour_rgb(135, 206, 235));
+draw_clear(c_black);
 
 // 3D projections require a view and projection matrix
 var camera = camera_get_active();
