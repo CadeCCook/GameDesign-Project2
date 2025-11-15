@@ -51,4 +51,6 @@ function world_init() {
     // Optional spawn hint if you want:
     // global.SPAWN_X = (global.WORLD_W * global.WORLD_CELL) * 0.5;
     // global.SPAWN_Y = (global.WORLD_H * global.WORLD_CELL) * 0.5;
+	
+	return LEVEL;
 }

@@ -6,6 +6,7 @@ gpu_set_zwriteenable(true);
 view_mat = undefined;
 proj_mat = undefined;
 
+/*
 //create a vertex format (basis for everything drawn in 3D)
 vertex_format_begin();
 vertex_format_add_position_3d(); //required
@@ -17,7 +18,7 @@ vertex_format = vertex_format_end();
 //define a vertex buffer
 vbuffer = vertex_create_buffer();
 vertex_begin(vbuffer, vertex_format);
-
+*/
 
 /*
 //create square coordinates
@@ -47,6 +48,8 @@ vertex_add_point(vbuffer, x1, y2, 100,	0, 0, 1,	0, 0,	c_blue, 1);
 vertex_add_point(vbuffer, x1, y1, 100,	0, 0, 1,	0, 0,	c_blue, 1);
 */
 
+
+/*
 var LEVEL = [
   [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
   [1,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1],
@@ -75,8 +78,6 @@ var LEVEL = [
     ];
 var rows = array_length(LEVEL);
 var cols = array_length(LEVEL[0]);	
-
-
 
 var s    = 128;
 var rows = array_length(LEVEL);       // 24
@@ -110,6 +111,7 @@ for (var ty = 0; ty < rows; ty++) {        // ty = tile_y in LEVEL
 vertex_end(vbuffer); //basically "seals up" the vertex buffer for the computer to draw
 
 ground_tex = sprite_get_texture(spr_grass, 0);
+*/
 
 instance_create_depth(x, y, 0, obj_player);
 

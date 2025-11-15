@@ -23,16 +23,20 @@ var fog_col = c_grey;
 gpu_set_fog(true, fog_col, 1200, 8000);
 
 
+/*
 // Everything must be drawn after the 3D projection has been set
 gpu_set_texrepeat(true);
 vertex_submit(vbuffer, pr_trianglelist, ground_tex);
 gpu_set_texrepeat(false);
+*/
+
 
 shader_reset();
 
 
 world_draw_walls();
 world_draw_ceiling();
+world_draw_floor();
 
 // Sorted billboard pass
 billboard_draw_sorted();

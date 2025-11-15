@@ -1,7 +1,7 @@
 /// @description Initialize grid + walls once
 
 
-world_init(); // uses the new helper-based authoring
+var LEVEL = world_init(); // uses the new helper-based authoring
 
 global.WALL_HEIGHT    = 128;
 global.WALL_TEX_SCALE = 64;
@@ -17,6 +17,7 @@ if (wall_sprite != -1) {
 
 world_build_walls();
 world_build_ceiling();
+world_build_floor(LEVEL);
 
 // Debug: confirm size at runtime
 show_debug_message("WORLD: " + string(global.WORLD_W) + " x " + string(global.WORLD_H)
@@ -27,4 +28,3 @@ show_debug_message("WORLD: " + string(global.WORLD_W) + " x " + string(global.WO
 //     if (variable_global_exists("SPAWN_X")) { x = global.SPAWN_X; }
 //     if (variable_global_exists("SPAWN_Y")) { y = global.SPAWN_Y; }
 // }
-
