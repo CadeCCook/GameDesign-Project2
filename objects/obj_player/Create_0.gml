@@ -7,6 +7,12 @@ mouse_lock = true;
 // collision radius for sliding against grid walls
 collide_radius = 24;
 
+
+max_hp = 100;
+hp = max_hp;
+
+
+
 // weapon
 sword_range       = 120;   // how close you must be
 sword_half_angle  = 35;    // degrees to each side of look_dir

@@ -15,7 +15,7 @@ function melee_hit_cone(x0, y0, dir_deg, range, half_angle_deg, dmg, knockback)
     var hits = 0;
 
     // iterate enemies (billboarded)
-    with (obj_billboard)
+    with (obj_enemy)
     {
         if (is_dead) continue;
 

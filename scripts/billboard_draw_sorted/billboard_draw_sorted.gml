@@ -1,7 +1,7 @@
 /// Draw all obj_billboard instances back-to-front and pick 8-way facing frames.
 /// Requires: draw_sprite_billboard(spr, subimg, x, y, z)
 function billboard_draw_sorted() {
-    if (!object_exists(obj_billboard)) return;
+    if (!object_exists(obj_enemy)) return;
 
     var eye_x = obj_player.x;
     var eye_y = obj_player.y;
@@ -9,9 +9,9 @@ function billboard_draw_sorted() {
 
     // Collect [dist2, instance] and sort far -> near
     var list = [];
-    var n = instance_number(obj_billboard);
+    var n = instance_number(obj_enemy);
     for (var i = 0; i < n; i++) {
-        var inst = instance_find(obj_billboard, i);
+        var inst = instance_find(obj_enemy, i);
         if (!instance_exists(inst)) continue;
         var dx = inst.x - eye_x, dy = inst.y - eye_y, dz = inst.z - eye_z;
         array_push(list, [dx*dx + dy*dy + dz*dz, inst]);

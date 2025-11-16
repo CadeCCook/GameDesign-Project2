@@ -1,6 +1,5 @@
 function world_build_walls() {
     if (!variable_global_exists("WALL_HEIGHT"))    global.WALL_HEIGHT    = 128;
-    if (!variable_global_exists("WALL_TEX_SCALE")) global.WALL_TEX_SCALE = 64;
 
     // Vertex format: pos3d + uv + color
     if (!variable_global_exists("VFMT_WALL")) {
@@ -11,7 +10,6 @@ function world_build_walls() {
         global.VFMT_WALL = vertex_format_end();
     }
 
-    // Destroy old buffer if present
     if (variable_global_exists("WALL_VB") && global.WALL_VB != -1) {
         vertex_delete_buffer(global.WALL_VB);
     }
@@ -19,32 +17,30 @@ function world_build_walls() {
     var vb = vertex_create_buffer();
     vertex_begin(vb, global.VFMT_WALL);
 
-    var c       = global.WORLD_CELL;
-    var H       = global.WALL_HEIGHT;
-    var u_scale = c / global.WALL_TEX_SCALE;
-    var v_scale = H / global.WALL_TEX_SCALE;
+    var c = global.WORLD_CELL;
+    var H = global.WALL_HEIGHT;
 
     var add_quad = function(
         _vb,
-        x1,y1,z1,  x2,y2,z2,  x3,y3,z3,  x4,y4,z4,
-        u_len, v_len
+        x1,y1,z1,  x2,y2,z2,  x3,y3,z3,  x4,y4,z4
     ) {
-        vertex_position_3d(_vb, x1,y1,z1); vertex_texcoord(_vb, 0,     0    ); vertex_color(_vb, c_gray, 1);
-        vertex_position_3d(_vb, x2,y2,z2); vertex_texcoord(_vb, 0,     v_len); vertex_color(_vb, c_gray, 1);
-        vertex_position_3d(_vb, x3,y3,z3); vertex_texcoord(_vb, u_len, v_len); vertex_color(_vb, c_gray, 1);
+        // use UVs exactly like the floor: full texture
+        vertex_position_3d(_vb, x1,y1,z1); vertex_texcoord(_vb, 0,0); vertex_color(_vb, c_gray, 1);
+        vertex_position_3d(_vb, x2,y2,z2); vertex_texcoord(_vb, 0,1); vertex_color(_vb, c_gray, 1);
+        vertex_position_3d(_vb, x3,y3,z3); vertex_texcoord(_vb, 1,1); vertex_color(_vb, c_gray, 1);
 
-        vertex_position_3d(_vb, x1,y1,z1); vertex_texcoord(_vb, 0,     0    ); vertex_color(_vb, c_gray, 1);
-        vertex_position_3d(_vb, x3,y3,z3); vertex_texcoord(_vb, u_len, v_len); vertex_color(_vb, c_gray, 1);
-        vertex_position_3d(_vb, x4,y4,z4); vertex_texcoord(_vb, u_len, 0    ); vertex_color(_vb, c_gray, 1);
+        vertex_position_3d(_vb, x1,y1,z1); vertex_texcoord(_vb, 0,0); vertex_color(_vb, c_gray, 1);
+        vertex_position_3d(_vb, x3,y3,z3); vertex_texcoord(_vb, 1,1); vertex_color(_vb, c_gray, 1);
+        vertex_position_3d(_vb, x4,y4,z4); vertex_texcoord(_vb, 1,0); vertex_color(_vb, c_gray, 1);
     };
 
     for (var jy = 0; jy < global.WORLD_H; jy++) {
         for (var ix = 0; ix < global.WORLD_W; ix++) {
-			// PIT tiles (value = 2)
-			if (global.WORLD_GRID[jy * global.WORLD_W + ix] == 2) {
-				instance_create_layer(ix * c, jy * c, "Instances", obj_pit);
-				continue;
-			}
+
+            if (global.WORLD_GRID[jy * global.WORLD_W + ix] == 2) {
+                instance_create_layer(ix * c, jy * c, "Instances", obj_pit);
+                continue;
+            }
             if (global.WORLD_GRID[jy * global.WORLD_W + ix] != 1) continue;
 
             var wx = ix * c;
@@ -60,8 +56,7 @@ function world_build_walls() {
                     wx,     wy,     0,
                     wx,     wy + c, 0,
                     wx,     wy + c, H,
-                    wx,     wy,     H,
-                    u_scale, v_scale
+                    wx,     wy,     H
                 );
             }
             if (right_empty) {
@@ -70,8 +65,7 @@ function world_build_walls() {
                     x2,     wy + c, 0,
                     x2,     wy,     0,
                     x2,     wy,     H,
-                    x2,     wy + c, H,
-                    u_scale, v_scale
+                    x2,     wy + c, H
                 );
             }
             if (up_empty) {
@@ -79,8 +73,7 @@ function world_build_walls() {
                     wx + c, wy,     0,
                     wx,     wy,     0,
                     wx,     wy,     H,
-                    wx + c, wy,     H,
-                    u_scale, v_scale
+                    wx + c, wy,     H
                 );
             }
             if (down_empty) {
@@ -89,8 +82,7 @@ function world_build_walls() {
                     wx,     y2,     0,
                     wx + c, y2,     0,
                     wx + c, y2,     H,
-                    wx,     y2,     H,
-                    u_scale, v_scale
+                    wx,     y2,     H
                 );
             }
         }

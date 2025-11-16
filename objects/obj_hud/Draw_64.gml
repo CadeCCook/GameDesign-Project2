@@ -69,3 +69,26 @@ draw_x = wx - ox * sc; draw_y = wy - oy * sc;
 draw_sprite_ext(knife_sprite, sub, draw_x, draw_y, sc, sc, 0, c_white, 1);
 
 
+// Draw healthbar
+var bar_x  = 20;
+var bar_y  = 20;
+var bar_w  = 200;
+var bar_h  = 20;
+
+// safety check
+var _hp     = (instance_exists(obj_player) && variable_instance_exists(obj_player, "hp"))     ? obj_player.hp     : 0;
+var _max_hp = (instance_exists(obj_player) && variable_instance_exists(obj_player, "max_hp")) ? obj_player.max_hp : 1;
+
+// Ratio of health (0..1)
+var hp_ratio = clamp(_hp / _max_hp, 0, 1);
+
+// background
+draw_set_colour(c_black);
+draw_rectangle(bar_x - 2, bar_y - 2, bar_x + bar_w + 2, bar_y + bar_h + 2, false);
+
+draw_set_colour(c_dkgray);
+draw_rectangle(bar_x, bar_y, bar_x + bar_w, bar_y + bar_h, false);
+
+// filled part
+draw_set_colour(c_red);
+draw_rectangle(bar_x, bar_y, bar_x + bar_w * hp_ratio, bar_y + bar_h, false);

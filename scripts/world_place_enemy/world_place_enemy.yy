@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"world_place_enemy",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"world_place_enemy",
+  "parent":{
+    "name":"Scripts",
+    "path":"folders/Scripts.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

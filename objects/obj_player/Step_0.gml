@@ -102,3 +102,9 @@ if (z < death_height) {
 if (keyboard_check_pressed(vk_tab)) {
 	mouse_lock = !mouse_lock;
 }
+
+
+// Restart room after running out of health
+if (hp <= 0) {
+	room_restart();
+}
