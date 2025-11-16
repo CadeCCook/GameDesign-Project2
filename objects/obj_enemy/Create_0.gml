@@ -15,7 +15,7 @@ attack_cooldown = 60;
 is_attacking = false;
 can_attack = true;
 
-sprite_idle = spr_enemy;
+sprite_idle = Enemy_Walk;
 sprite_attack = spr_enemy_attack;
 
 collide_radius = 12;
@@ -26,3 +26,4 @@ hp = 30;
 is_dead = false;
 hit_flash = 0;
 to_destroy = false;
+

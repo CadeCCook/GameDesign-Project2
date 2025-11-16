@@ -1,1 +1,1 @@
-draw_sprite_billboard(sprite_index, image_index, x, y, z);
+draw_sprite_billboard(sprite_index, image_index, x, y, z, 128);

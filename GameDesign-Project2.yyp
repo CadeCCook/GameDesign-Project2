@@ -68,6 +68,7 @@
     {"id":{"name":"world_place_enemy","path":"scripts/world_place_enemy/world_place_enemy.yy",},},
     {"id":{"name":"world_pos_to_cell","path":"scripts/world_pos_to_cell/world_pos_to_cell.yy",},},
     {"id":{"name":"shd_billboard","path":"shaders/shd_billboard/shd_billboard.yy",},},
+    {"id":{"name":"Enemy_Walk","path":"sprites/Enemy_Walk/Enemy_Walk.yy",},},
     {"id":{"name":"spr_enemy_attack","path":"sprites/spr_enemy_attack/spr_enemy_attack.yy",},},
     {"id":{"name":"spr_enemy","path":"sprites/spr_enemy/spr_enemy.yy",},},
     {"id":{"name":"spr_grass","path":"sprites/spr_grass/spr_grass.yy",},},

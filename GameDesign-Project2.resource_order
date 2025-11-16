@@ -45,6 +45,7 @@
     {"name":"world_persist","order":18,"path":"scripts/world_persist/world_persist.yy",},
     {"name":"world_place_enemy","order":21,"path":"scripts/world_place_enemy/world_place_enemy.yy",},
     {"name":"world_pos_to_cell","order":4,"path":"scripts/world_pos_to_cell/world_pos_to_cell.yy",},
+    {"name":"Enemy_Walk","order":10,"path":"sprites/Enemy_Walk/Enemy_Walk.yy",},
     {"name":"spr_enemy_attack","order":9,"path":"sprites/spr_enemy_attack/spr_enemy_attack.yy",},
     {"name":"spr_enemy","order":8,"path":"sprites/spr_enemy/spr_enemy.yy",},
     {"name":"spr_grass","order":2,"path":"sprites/spr_grass/spr_grass.yy",},
