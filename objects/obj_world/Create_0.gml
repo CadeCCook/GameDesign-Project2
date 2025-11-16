@@ -15,6 +15,7 @@ world_build_walls();
 world_build_ceiling();
 world_build_floor(LEVEL);
 world_place_enemy(LEVEL);
+world_place_end(LEVEL);
 
 // Debug: confirm size at runtime
 show_debug_message("WORLD: " + string(global.WORLD_W) + " x " + string(global.WORLD_H)

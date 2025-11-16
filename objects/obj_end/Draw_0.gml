@@ -1,0 +1,1 @@
+draw_sprite_billboard(spr_end, image_index, x, y, z, 128);

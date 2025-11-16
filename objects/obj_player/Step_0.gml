@@ -108,3 +108,8 @@ if (keyboard_check_pressed(vk_tab)) {
 if (hp <= 0) {
 	room_restart();
 }
+// Go to win screen after touching marker
+var inEnd = instance_position(x,y, obj_end);
+if (inEnd) {
+	room_goto(rm_winScreen);
+}

@@ -41,6 +41,10 @@ function world_build_walls() {
                 instance_create_layer(ix * c, jy * c, "Instances", obj_pit);
                 continue;
             }
+			if (global.WORLD_GRID[jy * global.WORLD_W + ix] == 5) {
+                instance_create_depth(ix * c, jy * c, 0, obj_end);
+                continue;
+            }
             if (global.WORLD_GRID[jy * global.WORLD_W + ix] != 1) continue;
 
             var wx = ix * c;
