@@ -36,7 +36,7 @@ function world_build_floor(LEVEL){
 	        // Skip traps/holes
 			lx = min(ty+1, rows-1);
 			ly = min(tx+1, rows-1);
-	        if (LEVEL[lx][ly] == 2) continue;
+	        if (LEVEL[lx][ly] == 2 || LEVEL[lx][ly] == 5) continue;
 
 	        // Convert matrix indices -> world coordinates
 	        var i = (tx + 1) * tileSize;  // +1 tile offset from origin

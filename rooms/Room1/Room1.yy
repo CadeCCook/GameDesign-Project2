@@ -1,16 +1,16 @@
 {
   "$GMRoom":"v1",
-  "%Name":"rm_Main",
+  "%Name":"Room1",
   "creationCodeFile":"",
   "inheritCode":false,
   "inheritCreationOrder":false,
   "inheritLayers":false,
   "instanceCreationOrder":[
-    {"name":"inst_32BF160C","path":"rooms/rm_Main/rm_Main.yy",},
-    {"name":"inst_17724CF0","path":"rooms/rm_Main/rm_Main.yy",},
-    {"name":"inst_5B00EF12","path":"rooms/rm_Main/rm_Main.yy",},
-    {"name":"inst_25E1DB01","path":"rooms/rm_Main/rm_Main.yy",},
-    {"name":"inst_D13D2E4","path":"rooms/rm_Main/rm_Main.yy",},
+    {"name":"inst_32BF160C","path":"rooms/Room1/Room1.yy",},
+    {"name":"inst_17724CF0","path":"rooms/Room1/Room1.yy",},
+    {"name":"inst_5B00EF12","path":"rooms/Room1/Room1.yy",},
+    {"name":"inst_25E1DB01","path":"rooms/Room1/Room1.yy",},
+    {"name":"inst_D13D2E4","path":"rooms/Room1/Room1.yy",},
   ],
   "isDnd":false,
   "layers":[
@@ -22,7 +22,7 @@
         {"$GMRInstance":"v4","%Name":"inst_D13D2E4","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_D13D2E4","objectId":{"name":"obj_minimap","path":"objects/obj_minimap/obj_minimap.yy",},"properties":[],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":896.0,"y":544.0,},
       ],"layers":[],"name":"Instances","properties":[],"resourceType":"GMRInstanceLayer","resourceVersion":"2.0","userdefinedDepth":false,"visible":true,},
   ],
-  "name":"rm_Main",
+  "name":"Room1",
   "parent":{
     "name":"Rooms",
     "path":"folders/Rooms.yy",

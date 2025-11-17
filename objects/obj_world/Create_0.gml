@@ -10,6 +10,8 @@ global.WALL_COLOR     = c_gray;
 // Optional: use a sprite named spr_wall if you add one later
 global.WALL_TEX = sprite_get_texture(spr_wall, 0);
 
+// set goal texture
+global.END_TEX = sprite_get_texture(spr_end, 0);
 
 world_build_walls();
 world_build_ceiling();

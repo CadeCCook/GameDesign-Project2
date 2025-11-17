@@ -37,6 +37,7 @@ shader_reset();
 world_draw_walls();
 world_draw_ceiling();
 world_draw_floor();
+world_draw_end()
 
 // Sorted billboard pass
 billboard_draw_sorted();

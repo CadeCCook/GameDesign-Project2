@@ -63,6 +63,7 @@
     {"id":{"name":"world_cell_solid","path":"scripts/world_cell_solid/world_cell_solid.yy",},},
     {"id":{"name":"world_collision_move","path":"scripts/world_collision_move/world_collision_move.yy",},},
     {"id":{"name":"world_draw_ceiling","path":"scripts/world_draw_ceiling/world_draw_ceiling.yy",},},
+    {"id":{"name":"world_draw_end","path":"scripts/world_draw_end/world_draw_end.yy",},},
     {"id":{"name":"world_draw_floor","path":"scripts/world_draw_floor/world_draw_floor.yy",},},
     {"id":{"name":"world_draw_walls","path":"scripts/world_draw_walls/world_draw_walls.yy",},},
     {"id":{"name":"world_from_array","path":"scripts/world_from_array/world_from_array.yy",},},

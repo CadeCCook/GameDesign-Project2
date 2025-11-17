@@ -41,6 +41,7 @@
     {"name":"world_cell_solid","order":3,"path":"scripts/world_cell_solid/world_cell_solid.yy",},
     {"name":"world_collision_move","order":5,"path":"scripts/world_collision_move/world_collision_move.yy",},
     {"name":"world_draw_ceiling","order":10,"path":"scripts/world_draw_ceiling/world_draw_ceiling.yy",},
+    {"name":"world_draw_end","order":24,"path":"scripts/world_draw_end/world_draw_end.yy",},
     {"name":"world_draw_floor","order":20,"path":"scripts/world_draw_floor/world_draw_floor.yy",},
     {"name":"world_draw_walls","order":7,"path":"scripts/world_draw_walls/world_draw_walls.yy",},
     {"name":"world_from_array","order":17,"path":"scripts/world_from_array/world_from_array.yy",},
