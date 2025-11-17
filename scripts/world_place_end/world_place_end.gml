@@ -4,7 +4,6 @@ function world_place_end(LEVEL)
 	var rows = array_length(LEVEL);
 	var cols = array_length(LEVEL[0]);
 
-	// Create end-tile vertex format if needed
 	if (!variable_global_exists("VFMT_END")) {
 		vertex_format_begin();
 		vertex_format_add_position_3d();
@@ -14,7 +13,6 @@ function world_place_end(LEVEL)
 		global.VFMT_END = vertex_format_end();
 	}
 
-	// Delete old end VB if present
 	if (variable_global_exists("END_VB") && global.END_VB != -1) {
 		vertex_delete_buffer(global.END_VB);
 	}
@@ -29,7 +27,7 @@ function world_place_end(LEVEL)
 
 			if (LEVEL[ty][tx] == 5) {
 
-				// --- 1) End floor tile (same mapping as world_build_floor) ---
+				// position for tile placement
 				var i = (tx) * tileSize;
 				var j = (ty) * tileSize;
 				var z = 0;
@@ -44,7 +42,7 @@ function world_place_end(LEVEL)
 				vertex_add_point(end_vbuffer, i,           j+tileSize,  z,  0,0,1,  0,1,  color, 1);
 				vertex_add_point(end_vbuffer, i,           j,           z,  0,0,1,  0,0,  color, 1);
 
-				// --- 2) Place the end object at the CENTER of that tile ---
+				// place obj_end
 				var xw = (tx + 0.5) * tileSize;
 				var yw = (ty + 0.5) * tileSize;
 				instance_create_depth(xw, yw, 0, obj_end);
