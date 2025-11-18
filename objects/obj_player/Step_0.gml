@@ -1,41 +1,57 @@
 /// @description Insert description here
-if (mouse_lock) {
-    look_dir -= (window_mouse_get_x() - window_get_width() / 2) / 10;
-    look_pitch += (window_mouse_get_y() - window_get_height() / 2) / 10;
-    look_pitch = clamp(look_pitch, -80, 80);
-    window_mouse_set(window_get_width() / 2, window_get_height() / 2);
+if (mouse_lock && !global.story_active) {
+
+    // FIRST FRAME AFTER SPAWN / ROOM CHANGE:
+    if (!view_initialized) {
+        // Center the mouse once, and keep our chosen look_pitch
+        window_mouse_set(window_get_width() / 2, window_get_height() / 2);
+        view_initialized = true;
+
+        // Skip applying mouse delta this step so we don't snap to the sky
+    }
+    else {
+        // Normal mouse-look behavior
+        look_dir   -= (window_mouse_get_x() - window_get_width() / 2) / 10;
+        look_pitch += (window_mouse_get_y() - window_get_height() / 2) / 10;
+
+        if (look_pitch > 80)  look_pitch = 80;
+        if (look_pitch < -80) look_pitch = -80;
+
+        window_mouse_set(window_get_width() / 2, window_get_height() / 2);
+    }
+
 
     if (keyboard_check_direct(vk_escape)) {
         game_end();
     }
 
-	var move_speed = 4;
-	var dx = 0;
-	var dy = 0;
+    var move_speed = 4;
+    var dx = 0;
+    var dy = 0;
 
-	if (keyboard_check(ord("A"))) {
-	    dx -= dsin(look_dir) * move_speed;
-	    dy -= dcos(look_dir) * move_speed;
-	}
+    if (keyboard_check(ord("A"))) {
+        dx -= dsin(look_dir) * move_speed;
+        dy -= dcos(look_dir) * move_speed;
+    }
 
-	if (keyboard_check(ord("D"))) {
-	    dx += dsin(look_dir) * move_speed;
-	    dy += dcos(look_dir) * move_speed;
-	}
+    if (keyboard_check(ord("D"))) {
+        dx += dsin(look_dir) * move_speed;
+        dy += dcos(look_dir) * move_speed;
+    }
 
-	if (keyboard_check(ord("W"))) {
-	    dx += dcos(look_dir) * move_speed;
-	    dy -= dsin(look_dir) * move_speed;
-	}
+    if (keyboard_check(ord("W"))) {
+        dx += dcos(look_dir) * move_speed;
+        dy -= dsin(look_dir) * move_speed;
+    }
 
-	if (keyboard_check(ord("S"))) {
-	    dx -= dcos(look_dir) * move_speed;
-	    dy += dsin(look_dir) * move_speed;
-	}
+    if (keyboard_check(ord("S"))) {
+        dx -= dcos(look_dir) * move_speed;
+        dy += dsin(look_dir) * move_speed;
+    }
 
-	var _moved = world_collision_move(x, y, dx, dy, collide_radius);
-	x = _moved[0];
-	y = _moved[1];
+    var _moved = world_collision_move(x, y, dx, dy, collide_radius);
+    x = _moved[0];
+    y = _moved[1];
 }
 
 // --- Sword swing ---

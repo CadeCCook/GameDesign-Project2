@@ -1,8 +1,3 @@
-function world_init() {
-    // --- Grid scale ---
-    global.WORLD_CELL = 128; // same feel as before
-
-    // ------------------------------------------------------------------
     // MAP DEFINITION (EDIT THIS ARRAY)
     //
     //  - 1 = wall
@@ -14,9 +9,32 @@ function world_init() {
     //   2) Paste the copied array over this LEVEL definition
     //   3) Commit this file to GitHub
     // ------------------------------------------------------------------
+function world_init() {
+    global.WORLD_CELL = 128;
 
-    var LEVEL = [
-        // Row  0 (top border)
+    var LEVEL;
+
+    if (room == rm_Tutorial) {
+
+// Tutorial level: simple horizontal hallway
+        // 0 = floor, 1 = wall, 3 = enemy, 5 = goal
+
+        LEVEL = [
+            [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+			[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+            [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+            [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+            [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+            [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,0,0,0,5,1],
+            [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+            [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+            [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+            [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
+																		];
+
+    } else {
+        // your existing main level layout
+        LEVEL = [// Row  0 (top border)
         [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
         // Rows 1..22 – interior (edit freely)
 		[1,0,0,0,0,0,0,0,0,0,0,2,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1],
@@ -43,14 +61,10 @@ function world_init() {
 		[1,0,0,0,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1],
         // Row 23 (bottom border)
         [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
-    ];
+																		];
+            // existing big 24x32 LEVEL from your file
+    }
 
-    // Build globals from that array
     world_from_array(LEVEL);
-
-    // Optional spawn hint if you want:
-    // global.SPAWN_X = (global.WORLD_W * global.WORLD_CELL) * 0.5;
-    // global.SPAWN_Y = (global.WORLD_H * global.WORLD_CELL) * 0.5;
-	
-	return LEVEL;
+    return LEVEL;
 }

@@ -1,9 +1,12 @@
 /// @description Insert description here
 z = 64;
-look_dir = 0;
-look_pitch = 0;
+look_dir   = 0;
+look_pitch = -5;
 mouse_lock = true;
 
+view_initialized = false;
+
+window_mouse_set(window_get_width() / 2, window_get_height() / 2);
 // collision radius for sliding against grid walls
 collide_radius = 24;
 
@@ -35,3 +38,7 @@ global.hud_attack_trigger = false;
 // (already have) ensure HUD exists + default scale if you want
 if (!instance_exists(obj_hud)) instance_create_layer(0,0,"Instances",obj_hud);
 if (!variable_global_exists("HUD_WEAPON_SCALE")) global.HUD_WEAPON_SCALE = 0.55;
+
+if (!variable_global_exists("story_active")) {
+    global.story_active = false;
+}
