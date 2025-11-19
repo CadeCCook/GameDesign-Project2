@@ -18,3 +18,18 @@ function world_from_array(level) {
         }
     }
 }
+
+function world_get_cell_at(px, py) {
+    var c = global.WORLD_CELL;
+
+    // Convert world position → grid index
+    var gx = floor(px / c);
+    var gy = floor(py / c);
+
+    // Safety: treat outside the level as solid
+    if (gx < 0 || gx >= global.WORLD_W || gy < 0 || gy >= global.WORLD_H) {
+        return 1; // wall
+    }
+
+    return global.WORLD_GRID[gy * global.WORLD_W + gx];
+}

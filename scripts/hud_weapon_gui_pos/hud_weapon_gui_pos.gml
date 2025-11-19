@@ -7,7 +7,7 @@ function hud_weapon_gui_pos()
 
     // margins from bottom-right
     var mx = 90;
-    var my = 60;
+    var my = 20;
 
     // subtle bob (uses global.hud_t if available)
     var t = variable_global_exists("hud_t") ? global.hud_t : 0;

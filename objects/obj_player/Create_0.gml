@@ -32,6 +32,13 @@ death_height    = -200;   // fall below this => die
 // Prevent an immediate swing/FX on room start
 attack_armed = false;
 
+
+/// Fairy trigger flag
+if (!variable_global_exists("helper_triggered")) {
+    global.helper_triggered = false;
+}
+
+
 // Reset any globals that might carry across rooms
 global.hud_attack_trigger = false;
 

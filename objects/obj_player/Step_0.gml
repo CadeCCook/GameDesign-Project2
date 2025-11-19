@@ -1,4 +1,4 @@
-/// @description Insert description here
+/// @description Insert description here	
 if (mouse_lock && !global.story_active) {
 
     // FIRST FRAME AFTER SPAWN / ROOM CHANGE:
@@ -48,6 +48,7 @@ if (mouse_lock && !global.story_active) {
         dx -= dcos(look_dir) * move_speed;
         dy += dsin(look_dir) * move_speed;
     }
+	
 
     var _moved = world_collision_move(x, y, dx, dy, collide_radius);
     x = _moved[0];
@@ -90,7 +91,8 @@ if (attack_armed && mouse_check_button_pressed(mb_left) && swing_timer <= 0) {
 // Place obj_pit rectangles where you want holes.
 // If the player is over a pit, they free-fall.
 
-var over_pit = (instance_position(x, y, obj_pit) != noone);
+var tile_here = world_get_cell_at(x, y);
+var over_pit  = (tile_here == 2);   // 2 = pit
 
 // Apply gravity
 if (over_pit) {
@@ -128,4 +130,25 @@ if (hp <= 0) {
 var inEnd = instance_position(x,y, obj_end);
 if (inEnd) {
 	room_goto(rm_winScreen);
+}
+
+/// Trigger fairy helper in tutorial hallway
+
+if (room == rm_Tutorial && !global.helper_triggered) {
+    // Pick a point down the hall where you want the fairy to show up.
+    // Hallway tiles are 128px wide; adjust this threshold if needed.
+    var trigger_x = 128 * 10; // e.g. around tile 10
+
+    if (x > trigger_x) {
+        global.helper_triggered = true;
+
+        // Tell the HUD to start the fly-in
+        with (obj_hud) {
+            helper_visible  = true;
+
+            // Start just off the right side again (in case of restarts)
+            helper_pos_x    = display_get_gui_width() + 64;
+            helper_pos_y    = display_get_gui_height() * 0.35;
+        }
+    }
 }

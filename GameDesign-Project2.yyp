@@ -85,6 +85,7 @@
     {"id":{"name":"spr_enemy","path":"sprites/spr_enemy/spr_enemy.yy",},},
     {"id":{"name":"spr_grass","path":"sprites/spr_grass/spr_grass.yy",},},
     {"id":{"name":"spr_heart","path":"sprites/spr_heart/spr_heart.yy",},},
+    {"id":{"name":"spr_helper","path":"sprites/spr_helper/spr_helper.yy",},},
     {"id":{"name":"spr_knife","path":"sprites/spr_knife/spr_knife.yy",},},
     {"id":{"name":"spr_pit","path":"sprites/spr_pit/spr_pit.yy",},},
     {"id":{"name":"spr_slash","path":"sprites/spr_slash/spr_slash.yy",},},
