@@ -53,6 +53,23 @@ if (mouse_lock && !global.story_active) {
     var _moved = world_collision_move(x, y, dx, dy, collide_radius);
     x = _moved[0];
     y = _moved[1];
+	
+	// --- Push player out of enemies so we can't walk through them ---
+    with (obj_enemy)
+    {
+        var min_dist = other.collide_radius + collide_radius;
+        var d = point_distance(x, y, other.x, other.y);
+
+        if (d > 0 && d < min_dist)
+        {
+            var push = min_dist - d;
+            // direction from enemy (x,y) to player (other.x, other.y)
+            var dir  = point_direction(x, y, other.x, other.y);
+
+            other.x += lengthdir_x(push, dir);
+            other.y += lengthdir_y(push, dir);
+        }
+    }
 }
 
 // --- Sword swing ---
