@@ -69,7 +69,8 @@
     {"name":"spr_slash","order":2,"path":"sprites/spr_slash/spr_slash.yy",},
     {"name":"spr_test_enemy_attack","order":7,"path":"sprites/spr_test_enemy_attack/spr_test_enemy_attack.yy",},
     {"name":"spr_wall","order":5,"path":"sprites/spr_wall/spr_wall.yy",},
+    {"name":"spr_wallnormal","order":19,"path":"sprites/spr_wallnormal/spr_wallnormal.yy",},
     {"name":"spr_winscreen","order":10,"path":"sprites/spr_winscreen/spr_winscreen.yy",},
-    {"name":"Wall_Tiles","order":16,"path":"sprites/Wall_Tiles/Wall_Tiles.yy",},
+    {"name":"Wall_Tiles_500x500","order":18,"path":"sprites/Wall_Tiles_500x500/Wall_Tiles_500x500.yy",},
   ],
 }
