@@ -1,56 +1,48 @@
 /// Grid helper functions (no lambdas; avoid reserved identifiers)
 
+/// Basic bounds & indexing
 function world_in_bounds(ix, iy) {
     return (ix >= 0) && (ix < global.WORLD_W) && (iy >= 0) && (iy < global.WORLD_H);
 }
+
 function world_index(ix, iy) {
     return iy * global.WORLD_W + ix;
 }
-function world_set_wall(ix, iy) {
+
+/// ------------------------------------------------------------------
+/// TILE CODES WE'LL USE
+/// 0 = empty / floor
+/// 1 = normal wall  (random: plain / crack / blood)
+/// 2 = hole / pit
+/// 3 = enemy spawn
+/// 4 = wall (torch)
+/// 5 = goal / exit
+/// 6 = wall (trap)
+/// ------------------------------------------------------------------
+
+function world_set_cell(ix, iy, value) {
     if (world_in_bounds(ix, iy)) {
-        global.WORLD_GRID[world_index(ix, iy)] = 1;
-    }
-}
-function world_clear_wall(ix, iy) {
-    if (world_in_bounds(ix, iy)) {
-        global.WORLD_GRID[world_index(ix, iy)] = 0;
-    }
-}
-function world_fill_rect(ix, iy, w, h) {
-    if (w < 0) { ix += w; w = -w; }
-    if (h < 0) { iy += h; h = -h; }
-    var x0 = max(0, ix);
-    var y0 = max(0, iy);
-    var x1 = min(global.WORLD_W - 1, ix + w - 1);
-    var y1 = min(global.WORLD_H - 1, iy + h - 1);
-    for (var ry = y0; ry <= y1; ry++) {
-        var row = ry * global.WORLD_W;
-        for (var rx = x0; rx <= x1; rx++) {
-            global.WORLD_GRID[row + rx] = 1;
-        }
-    }
-}
-function world_line_h(x0, rowY, x1) {
-    var xa = clamp(min(x0, x1), 0, global.WORLD_W - 1);
-    var xb = clamp(max(x0, x1), 0, global.WORLD_W - 1);
-    var yy = clamp(rowY,       0, global.WORLD_H - 1);
-    var row = yy * global.WORLD_W;
-    for (var rx = xa; rx <= xb; rx++) {
-        global.WORLD_GRID[row + rx] = 1;
-    }
-}
-function world_line_v(colX, y0, y1) {
-    var ya = clamp(min(y0, y1), 0, global.WORLD_H - 1);
-    var yb = clamp(max(y0, y1), 0, global.WORLD_H - 1);
-    var xx = clamp(colX,        0, global.WORLD_W - 1);
-    for (var ry = ya; ry <= yb; ry++) {
-        global.WORLD_GRID[ry * global.WORLD_W + xx] = 1;
+        global.WORLD_GRID[world_index(ix, iy)] = value;
     }
 }
 
-/// Dump current grid as a 2D array literal (to clipboard & console)
+// Convenience setters
+function world_set_wall(ix, iy)        { world_set_cell(ix, iy, 1); }
+function world_set_pit(ix, iy)         { world_set_cell(ix, iy, 2); }
+function world_set_enemy(ix, iy)       { world_set_cell(ix, iy, 3); }
+function world_set_wall_torch(ix, iy)  { world_set_cell(ix, iy, 4); }
+function world_set_goal(ix, iy)        { world_set_cell(ix, iy, 5); }
+function world_set_wall_trap(ix, iy)   { world_set_cell(ix, iy, 6); }
+
+// Clear helpers
+function world_clear_cell(ix, iy)      { world_set_cell(ix, iy, 0); }
+function world_clear_wall(ix, iy)      { world_clear_cell(ix, iy); }
+
+/// Dump WORLD_GRID as 2D LEVEL array to clipboard
 function world_grid_dump_array() {
-    var W = global.WORLD_W, H = global.WORLD_H;
+    var W = global.WORLD_W;
+    var H = global.WORLD_H;
+
     var s = "[\n";
     for (var r = 0; r < H; r++) {
         s += "  [";

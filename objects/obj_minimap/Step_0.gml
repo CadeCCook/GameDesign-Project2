@@ -1,4 +1,4 @@
-// obj_minimap Step
+// obj_minimap Step (editing)
 if (!active) exit;
 
 var W  = global.WORLD_W;
@@ -11,18 +11,50 @@ var py = MM_pad;
 var mx = device_mouse_x(0);
 var my = device_mouse_y(0);
 
+// Grid coords under mouse
 var gx = floor((mx - px) / sz);
 var gy = floor((my - py) / sz);
 var inside = (gx >= 0 && gx < W && gy >= 0 && gy < H);
 
+// --- Painting -------------------------------------------------------
 if (inside) {
+
+    // LEFT CLICK = paint according to current brush
     if (mouse_check_button_pressed(mb_left)) {
-        world_set_wall(gx, gy);
+
+        switch (edit_mode) {
+            case 0: // normal wall
+                world_set_wall(gx, gy);
+                break;
+
+            case 1: // torch wall
+                world_set_wall_torch(gx, gy);
+                break;
+
+            case 2: // trap wall
+                world_set_wall_trap(gx, gy);
+                break;
+
+            case 3: // hole / pit
+                world_set_pit(gx, gy);
+                break;
+
+            case 4: // enemy spawn
+                world_set_enemy(gx, gy);
+                break;
+        }
+
+        // Rebuild geometry so you can see changes while testing
         world_build_walls();
+        //world_build_floor(global.WORLD_GRID); // your floor builder
     }
+
+    // RIGHT CLICK = clear tile
     if (mouse_check_button_pressed(mb_right)) {
-        world_clear_wall(gx, gy);
+        world_clear_cell(gx, gy);
+
         world_build_walls();
+        //world_build_floor(global.WORLD_GRID);
     }
 }
 

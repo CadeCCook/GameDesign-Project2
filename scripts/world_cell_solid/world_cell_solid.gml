@@ -2,5 +2,11 @@ function world_cell_solid(ci, cj) {
     if (ci < 0 || cj < 0 || ci >= global.WORLD_W || cj >= global.WORLD_H) {
         return true; // out of bounds = solid
     }
-    return global.WORLD_GRID[cj * global.WORLD_W + ci] == 1;
+
+    var v = global.WORLD_GRID[cj * global.WORLD_W + ci];
+
+    // 1 = normal wall
+    // 4 = wall (Torch)
+    // 6 = wall (Trap)
+    return (v == 1) || (v == 4) || (v == 6);
 }

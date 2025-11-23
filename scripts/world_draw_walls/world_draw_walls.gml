@@ -1,23 +1,35 @@
-function world_draw_walls()
-{
-    // If the globals don’t exist yet, nothing to draw
-    if (!variable_global_exists("WALL_VB_plain")) return;
-
+function world_draw_walls() {
+    gpu_set_cullmode(cull_noculling);
     gpu_set_ztestenable(true);
     gpu_set_zwriteenable(true);
-    gpu_set_cullmode(cull_noculling);
 
-    gpu_set_texrepeat(true);
-
-    if (global.WALL_VB_plain != -1) {
-        vertex_submit(global.WALL_VB_plain, pr_trianglelist, global.WALL_TEX_plain);
-    }
-    if (global.WALL_VB_crack != -1) {
-        vertex_submit(global.WALL_VB_crack, pr_trianglelist, global.WALL_TEX_crack);
-    }
-    if (global.WALL_VB_blood != -1) {
-        vertex_submit(global.WALL_VB_blood, pr_trianglelist, global.WALL_TEX_blood);
+    // Plain walls
+    if (variable_global_exists("WALL_VB") && global.WALL_VB != -1) {
+        var tex_plain = sprite_get_texture(spr_wall, 0);
+        vertex_submit(global.WALL_VB, pr_trianglelist, tex_plain);
     }
 
-    gpu_set_texrepeat(false);
+    // Cracked walls
+    if (variable_global_exists("WALL_VB_CRACK") && global.WALL_VB_CRACK != -1) {
+        var tex_crack = sprite_get_texture(spr_wallCrack, 0);
+        vertex_submit(global.WALL_VB_CRACK, pr_trianglelist, tex_crack);
+    }
+
+    // Bloody walls
+    if (variable_global_exists("WALL_VB_BLOOD") && global.WALL_VB_BLOOD != -1) {
+        var tex_blood = sprite_get_texture(spr_wallBlood, 0);
+        vertex_submit(global.WALL_VB_BLOOD, pr_trianglelist, tex_blood);
+    }
+
+    // Torch walls (cell = 4)
+    if (variable_global_exists("WALL_VB_TORCH") && global.WALL_VB_TORCH != -1) {
+        var tex_torch = sprite_get_texture(spr_wallTorch, 0);
+        vertex_submit(global.WALL_VB_TORCH, pr_trianglelist, tex_torch);
+    }
+
+    // Trap walls (cell = 6)
+    if (variable_global_exists("WALL_VB_TRAP") && global.WALL_VB_TRAP != -1) {
+        var tex_trap = sprite_get_texture(spr_wallTrap, 0);
+        vertex_submit(global.WALL_VB_TRAP, pr_trianglelist, tex_trap);
+    }
 }

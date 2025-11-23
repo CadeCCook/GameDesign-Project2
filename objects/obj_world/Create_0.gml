@@ -13,18 +13,9 @@ global.WALL_TEX = sprite_get_texture(spr_wall, 0);
 // set goal texture
 global.END_TEX = sprite_get_texture(spr_end, 0);
 
-world_build_walls(LEVEL);
+world_build_walls();
 world_build_ceiling();
 world_build_floor(LEVEL);
 world_place_enemy(LEVEL);
 world_place_end(LEVEL);
 
-// Debug: confirm size at runtime
-show_debug_message("WORLD: " + string(global.WORLD_W) + " x " + string(global.WORLD_H)
-    + "  CELL=" + string(global.WORLD_CELL));
-
-// Optional: drop player near center if you enabled SPAWN hints in world_init()
-// with (instance_find(obj_player, 0)) {
-//     if (variable_global_exists("SPAWN_X")) { x = global.SPAWN_X; }
-//     if (variable_global_exists("SPAWN_Y")) { y = global.SPAWN_Y; }
-// }
