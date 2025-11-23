@@ -13,7 +13,7 @@ global.WALL_TEX = sprite_get_texture(spr_wall, 0);
 // set goal texture
 global.END_TEX = sprite_get_texture(spr_end, 0);
 
-world_build_walls();
+world_build_walls(LEVEL);
 world_build_ceiling();
 world_build_floor(LEVEL);
 world_place_enemy(LEVEL);
