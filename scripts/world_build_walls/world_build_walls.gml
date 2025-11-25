@@ -47,7 +47,6 @@ function world_build_walls() {
     vertex_begin(vb_trap,  global.VFMT_WALL);
 
 
-    // Helper to add a rectangular quad to any vb
     var add_quad = function(_vb,
                         x1,y1,z1,
                         x2,y2,z2,
@@ -68,7 +67,6 @@ function world_build_walls() {
 }
 
 
-    // Build walls from WORLD_GRID
     var c  = global.WORLD_CELL;
     var Hh = global.WALL_HEIGHT;
     var W  = global.WORLD_W;
@@ -89,7 +87,6 @@ function world_build_walls() {
             }
 
             // 5 = goal/end: no walls here; world_place_end()
-            // handles geometry + obj_end separately
             if (cell == 5) {
                 continue;
             }
@@ -120,7 +117,6 @@ function world_build_walls() {
                     break;
 
                 default:
-                    // not a wall at all
                     continue;
             }
 

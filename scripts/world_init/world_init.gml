@@ -9,6 +9,8 @@
     //   2) Paste the copied array over this LEVEL definition
 function world_init() {
     global.WORLD_CELL = 128;
+	global.WALL_HEIGHT  = 192;
+    global.CEILING_HEIGHT = global.WALL_HEIGHT + -63;
 
     var LEVEL;
 

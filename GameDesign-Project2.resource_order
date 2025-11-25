@@ -61,7 +61,7 @@
     {"name":"Play_Again_Button","order":11,"path":"sprites/Play_Again_Button/Play_Again_Button.yy",},
     {"name":"spr_bloodyFloor","order":27,"path":"sprites/spr_bloodyFloor/spr_bloodyFloor.yy",},
     {"name":"spr_bloodyFloor2","order":26,"path":"sprites/spr_bloodyFloor2/spr_bloodyFloor2.yy",},
-    {"name":"spr_celling","order":29,"path":"sprites/spr_celling/spr_celling.yy",},
+    {"name":"spr_ceiling","order":29,"path":"sprites/spr_ceiling/spr_ceiling.yy",},
     {"name":"spr_end","order":9,"path":"sprites/spr_end/spr_end.yy",},
     {"name":"spr_enemy_attack","order":17,"path":"sprites/spr_enemy_attack/spr_enemy_attack.yy",},
     {"name":"spr_enemy","order":6,"path":"sprites/spr_enemy/spr_enemy.yy",},

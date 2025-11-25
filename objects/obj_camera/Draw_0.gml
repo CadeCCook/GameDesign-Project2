@@ -6,7 +6,7 @@ var camera = camera_get_active();
 
 var xfrom = obj_player.x;
 var yfrom = obj_player.y;
-var zfrom = obj_player.z + 64;
+var zfrom = obj_player.z + 25;
 var xto = xfrom + dcos(obj_player.look_dir) * dcos(obj_player.look_pitch);
 var yto = yfrom - dsin(obj_player.look_dir) * dcos(obj_player.look_pitch);
 var zto = zfrom - dsin(obj_player.look_pitch);

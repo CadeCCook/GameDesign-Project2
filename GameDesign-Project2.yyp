@@ -84,7 +84,7 @@
     {"id":{"name":"Play_Again_Button","path":"sprites/Play_Again_Button/Play_Again_Button.yy",},},
     {"id":{"name":"spr_bloodyFloor","path":"sprites/spr_bloodyFloor/spr_bloodyFloor.yy",},},
     {"id":{"name":"spr_bloodyFloor2","path":"sprites/spr_bloodyFloor2/spr_bloodyFloor2.yy",},},
-    {"id":{"name":"spr_celling","path":"sprites/spr_celling/spr_celling.yy",},},
+    {"id":{"name":"spr_ceiling","path":"sprites/spr_ceiling/spr_ceiling.yy",},},
     {"id":{"name":"spr_end","path":"sprites/spr_end/spr_end.yy",},},
     {"id":{"name":"spr_enemy_attack","path":"sprites/spr_enemy_attack/spr_enemy_attack.yy",},},
     {"id":{"name":"spr_enemy","path":"sprites/spr_enemy/spr_enemy.yy",},},
