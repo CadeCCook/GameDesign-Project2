@@ -42,11 +42,15 @@ if (inside) {
             case 4: // enemy spawn
                 world_set_enemy(gx, gy);
                 break;
+				
+			case 5: // heart
+                world_set_heart(gx, gy);
+                break;
         }
 
         // Rebuild geometry so you can see changes while testing
         world_build_walls();
-        //world_build_floor(global.WORLD_GRID); // your floor builder
+        world_place_hearts();
     }
 
     // RIGHT CLICK = clear tile

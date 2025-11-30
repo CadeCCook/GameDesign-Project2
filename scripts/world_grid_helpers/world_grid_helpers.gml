@@ -1,6 +1,3 @@
-/// Grid helper functions (no lambdas; avoid reserved identifiers)
-
-/// Basic bounds & indexing
 function world_in_bounds(ix, iy) {
     return (ix >= 0) && (ix < global.WORLD_W) && (iy >= 0) && (iy < global.WORLD_H);
 }
@@ -18,6 +15,7 @@ function world_index(ix, iy) {
 /// 4 = wall (torch)
 /// 5 = goal / exit
 /// 6 = wall (trap)
+/// 7 = heart pickup
 /// ------------------------------------------------------------------
 
 function world_set_cell(ix, iy, value) {
@@ -33,6 +31,7 @@ function world_set_enemy(ix, iy)       { world_set_cell(ix, iy, 3); }
 function world_set_wall_torch(ix, iy)  { world_set_cell(ix, iy, 4); }
 function world_set_goal(ix, iy)        { world_set_cell(ix, iy, 5); }
 function world_set_wall_trap(ix, iy)   { world_set_cell(ix, iy, 6); }
+function world_set_heart(ix, iy)       { world_set_cell(ix, iy, 7); }
 
 // Clear helpers
 function world_clear_cell(ix, iy)      { world_set_cell(ix, iy, 0); }

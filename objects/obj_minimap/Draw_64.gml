@@ -30,8 +30,9 @@ for (var r = 0; r < H; r++) {
             case 2: col = MM_col_pit;        break;
             case 3: col = MM_col_enemy;      break;
             case 4: col = MM_col_wallTorch;  break;
+            case 5: col = MM_col_hover;      break; // goal
             case 6: col = MM_col_wallTrap;   break;
-            case 5: col = MM_col_hover;      break; // goal – just reusing hover colour
+			case 7: col = MM_col_heart;      break;
             default: col = MM_col_empty;     break;
         }
 
@@ -69,6 +70,7 @@ switch (edit_mode) {
     case 2: mode_name = "Wall (Trap)";  break;
     case 3: mode_name = "Hole";         break;
     case 4: mode_name = "Enemy";        break;
+	case 5: mode_name = "Heart";        break;
 }
 
 if (gx >= 0 && gx < W && gy >= 0 && gy < H) {

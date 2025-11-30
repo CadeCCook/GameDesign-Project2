@@ -1,0 +1,26 @@
+{
+  "$GMSound":"v2",
+  "%Name":"_476947__kurlyjoe__monster_growl",
+  "audioGroupId":{
+    "name":"audiogroup_default",
+    "path":"audiogroups/audiogroup_default",
+  },
+  "bitDepth":1,
+  "channelFormat":0,
+  "compression":0,
+  "compressionQuality":4,
+  "conversionMode":0,
+  "duration":4.0,
+  "exportDir":"",
+  "name":"_476947__kurlyjoe__monster_growl",
+  "parent":{
+    "name":"Sounds",
+    "path":"folders/Sounds.yy",
+  },
+  "preload":false,
+  "resourceType":"GMSound",
+  "resourceVersion":"2.0",
+  "sampleRate":44100,
+  "soundFile":"_476947__kurlyjoe__monster_growl.wav",
+  "volume":1.0,
+}

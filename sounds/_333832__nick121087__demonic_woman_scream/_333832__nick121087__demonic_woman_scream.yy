@@ -1,0 +1,26 @@
+{
+  "$GMSound":"v2",
+  "%Name":"_333832__nick121087__demonic_woman_scream",
+  "audioGroupId":{
+    "name":"audiogroup_default",
+    "path":"audiogroups/audiogroup_default",
+  },
+  "bitDepth":1,
+  "channelFormat":0,
+  "compression":0,
+  "compressionQuality":4,
+  "conversionMode":0,
+  "duration":4.4583445,
+  "exportDir":"",
+  "name":"_333832__nick121087__demonic_woman_scream",
+  "parent":{
+    "name":"Sounds",
+    "path":"folders/Sounds.yy",
+  },
+  "preload":false,
+  "resourceType":"GMSound",
+  "resourceVersion":"2.0",
+  "sampleRate":44100,
+  "soundFile":"_333832__nick121087__demonic_woman_scream.wav",
+  "volume":1.0,
+}

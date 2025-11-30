@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"world_spawn_random_hearts",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"world_spawn_random_hearts",
+  "parent":{
+    "name":"Scripts",
+    "path":"folders/Scripts.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

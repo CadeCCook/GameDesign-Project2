@@ -61,7 +61,9 @@ function world_build_floor(LEVEL)
             var tile = global.WORLD_GRID[idx];
 
             // Skip pits and goal tiles – they have no floor
-            if (tile == 2 || tile == 5) continue;
+            if (tile == 2 || tile == 5) {
+				continue;
+			}
 
             // Choose which floor buffer to use (random)
             var vb_tile = vb_plain;

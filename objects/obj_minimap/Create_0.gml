@@ -16,13 +16,14 @@ MM_col_hover = make_color_rgb(240, 240, 80);
 // 3 = hole
 // 4 = enemy
 edit_mode      = 0;
-edit_mode_max  = 4;
+edit_mode_max  = 5;
 
 // Optional extra colours so we can see special tiles
 MM_col_pit       = make_color_rgb(20, 20, 20);
 MM_col_enemy     = make_color_rgb(200, 60, 60);
 MM_col_wallTorch = make_color_rgb(255, 200, 80);
 MM_col_wallTrap  = make_color_rgb(150, 80, 255);
+MM_col_heart = make_color_rgb(255, 105, 180);
 
 // (Optional) expose a flag if other systems care about UI state
 global.MINIMAP_ACTIVE = false;
