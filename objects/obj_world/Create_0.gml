@@ -15,7 +15,7 @@ world_place_end(LEVEL);
 world_place_hearts();
 
 // Random hearts spawn in the main room only
-if (room == rm_Main) {
+if (room == rm_mainlvl) {
     world_spawn_random_hearts(4, 5);
 }
 

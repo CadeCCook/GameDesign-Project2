@@ -14,10 +14,10 @@ function world_init() {
 
     var LEVEL;
 
-    if (room == rm_Tutorial) {
+    if (room == rm_tutoriallvl) {
 
 // Tutorial level: simple horizontal hallway
-        // 0 = floor, 1 = wall, 3 = enemy, 5 = goal
+        // 0 = floor, 1 = wall, 2 = pit, 3 = enemy, 5 = goal
 
         LEVEL = [
   [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],

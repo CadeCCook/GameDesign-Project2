@@ -1,7 +1,7 @@
 /// obj_camera – Room Start
 
 // Only do this in the tutorial room
-if (room == rm_Tutorial) {
+if (room == rm_tutoriallvl) {
 
     // Center the mouse in the window
     window_mouse_set(window_get_width() / 2, window_get_height() / 2);

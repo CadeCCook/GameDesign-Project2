@@ -43,7 +43,7 @@ if (helper_visible) {
             helper_talking       = true;
 
             // change this line to whatever you want the fairy to say
-            helper_text = "Use W, A, S, D to move and your mouse to look around.";
+            helper_text = "Use W, A, S, D to move and your mouse to look around. \nPress the left mouse button to attack the enemy. \nMake sure you don't fall into the pit!!!";
 
             helper_text_timer    = helper_text_duration;
         }

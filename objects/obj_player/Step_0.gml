@@ -151,7 +151,7 @@ if (inEnd) {
 
 /// Trigger fairy helper in tutorial hallway
 
-if (room == rm_Tutorial && !global.helper_triggered) {
+if (room == rm_tutoriallvl && !global.helper_triggered) {
     // Pick a point down the hall where you want the fairy to show up.
     // Hallway tiles are 128px wide; adjust this threshold if needed.
     var trigger_x = 128 * 10; // e.g. around tile 10
