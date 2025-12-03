@@ -22,6 +22,7 @@
     {"name":"obj_end","order":8,"path":"objects/obj_end/obj_end.yy",},
     {"name":"obj_enemy","order":2,"path":"objects/obj_enemy/obj_enemy.yy",},
     {"name":"obj_fadeIn","order":12,"path":"objects/obj_fadeIn/obj_fadeIn.yy",},
+    {"name":"obj_fullScreen","order":16,"path":"objects/obj_fullScreen/obj_fullScreen.yy",},
     {"name":"obj_heart","order":13,"path":"objects/obj_heart/obj_heart.yy",},
     {"name":"obj_hud","order":4,"path":"objects/obj_hud/obj_hud.yy",},
     {"name":"obj_instrBtn","order":3,"path":"objects/obj_instrBtn/obj_instrBtn.yy",},

@@ -1,25 +1,29 @@
-/// @description Insert description here	
-if (mouse_lock && !global.story_active) {
+	if (mouse_lock && !global.story_active) {
 
-    // FIRST FRAME AFTER SPAWN / ROOM CHANGE:
+    var cx = window_get_width()  div 2;
+    var cy = window_get_height() div 2;
+
     if (!view_initialized) {
-        // Center the mouse once, and keep our chosen look_pitch
-        window_mouse_set(window_get_width() / 2, window_get_height() / 2);
+        window_mouse_set(cx, cy);
         view_initialized = true;
-
-        // Skip applying mouse delta this step so we don't snap to the sky
     }
     else {
         // Normal mouse-look behavior
-        look_dir   -= (window_mouse_get_x() - window_get_width() / 2) / 10;
-        look_pitch += (window_mouse_get_y() - window_get_height() / 2) / 10;
+        var mx = window_mouse_get_x();
+        var my = window_mouse_get_y();
+
+        var dx = mx - cx;
+        var dy = my - cy;
+
+        look_dir   -= dx / 10;
+        look_pitch += dy / 10;
 
         if (look_pitch > 80)  look_pitch = 80;
         if (look_pitch < -80) look_pitch = -80;
 
-        window_mouse_set(window_get_width() / 2, window_get_height() / 2);
+        // Recenter to the same integer coords
+        window_mouse_set(cx, cy);
     }
-
 
     if (keyboard_check_direct(vk_escape)) {
         game_end();
@@ -49,12 +53,11 @@ if (mouse_lock && !global.story_active) {
         dy += dsin(look_dir) * move_speed;
     }
 	
-
     var _moved = world_collision_move(x, y, dx, dy, collide_radius);
     x = _moved[0];
     y = _moved[1];
 	
-	// --- Push player out of enemies so we can't walk through them ---
+    // --- Push player out of enemies so we can't walk through them ---
     with (obj_enemy)
     {
         var min_dist = other.collide_radius + collide_radius;
@@ -70,66 +73,51 @@ if (mouse_lock && !global.story_active) {
             other.y += lengthdir_y(push, dir);
         }
     }
+
 }
 
 // --- Sword swing ---
-// 1) Arm after first mouse release to avoid startup fire
 if (!attack_armed) {
     if (!mouse_check_button(mb_left)) attack_armed = true;
 }
 
-// 2) Standard cooldown
 if (swing_timer > 0) swing_timer -= 1;
 
-// 3) Only allow swings once armed
 if (attack_armed && mouse_check_button_pressed(mb_left) && swing_timer <= 0) {
     swing_timer = sword_cooldown;
 
-    // HUD knife anim always starts
     global.hud_attack_trigger = true;
 
-    // Apply damage
     var hits = melee_hit_cone(x, y, look_dir,
                               sword_range,
                               sword_half_angle,
                               sword_damage,
                               sword_knockback);
 
-    // Slash FX ONLY when we hit something
     if (hits > 0) {
         var fx = instance_create_layer(0, 0, "Instances", obj_slash_fx);
-        fx.use_reticle = true;  // center on reticle
-        // fx.slash_mult = 10.0; // (optional) size override
+        fx.use_reticle = true;
     }
 }
 
-//pit and grav
-
-// Place obj_pit rectangles where you want holes.
-// If the player is over a pit, they free-fall.
-
+// --- Pit & gravity ---
 var tile_here = world_get_cell_at(x, y);
 var over_pit  = (tile_here == 2);   // 2 = pit
 
-// Apply gravity
 if (over_pit) {
-    // Free fall
     vz += gravity_accel;
     z  += vz;
 } else {
     if (z > floor_z) {
-        // If somehow above floor, let gravity work
         vz += gravity_accel;
         z  += vz;
         if (z <= floor_z) { z = floor_z; vz = 0; }
     } else {
-        // Locked to the floor
-        z = floor_z;
+        z  = floor_z;
         vz = 0;
     }
 }
 
-// Death if the player falls
 if (z < death_height) {
     room_restart();
 }
@@ -138,32 +126,24 @@ if (keyboard_check_pressed(vk_tab)) {
 	mouse_lock = !mouse_lock;
 }
 
-
-// Restart room after running out of health
 if (hp <= 0) {
 	room_restart();
 }
-// Go to win screen after touching marker
+
 var inEnd = instance_position(x,y, obj_end);
 if (inEnd) {
 	room_goto(rm_winScreen);
 }
 
 /// Trigger fairy helper in tutorial hallway
-
 if (room == rm_tutoriallvl && !global.helper_triggered) {
-    // Pick a point down the hall where you want the fairy to show up.
-    // Hallway tiles are 128px wide; adjust this threshold if needed.
-    var trigger_x = 128 * 10; // e.g. around tile 10
+    var trigger_x = 128 * 10;
 
     if (x > trigger_x) {
         global.helper_triggered = true;
 
-        // Tell the HUD to start the fly-in
         with (obj_hud) {
             helper_visible  = true;
-
-            // Start just off the right side again (in case of restarts)
             helper_pos_x    = display_get_gui_width() + 64;
             helper_pos_y    = display_get_gui_height() * 0.35;
         }

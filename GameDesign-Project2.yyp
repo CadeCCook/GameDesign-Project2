@@ -42,6 +42,7 @@
     {"id":{"name":"obj_end","path":"objects/obj_end/obj_end.yy",},},
     {"id":{"name":"obj_enemy","path":"objects/obj_enemy/obj_enemy.yy",},},
     {"id":{"name":"obj_fadeIn","path":"objects/obj_fadeIn/obj_fadeIn.yy",},},
+    {"id":{"name":"obj_fullScreen","path":"objects/obj_fullScreen/obj_fullScreen.yy",},},
     {"id":{"name":"obj_heart","path":"objects/obj_heart/obj_heart.yy",},},
     {"id":{"name":"obj_hud","path":"objects/obj_hud/obj_hud.yy",},},
     {"id":{"name":"obj_instrBtn","path":"objects/obj_instrBtn/obj_instrBtn.yy",},},

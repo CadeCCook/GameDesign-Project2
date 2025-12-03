@@ -1,12 +1,21 @@
-/// @description Insert description here
 z = 64;
-look_dir   = 0;
-look_pitch = -5;
 mouse_lock = true;
 
-view_initialized = false;
+if (!variable_global_exists("GLOBAL_LOOK_DIR")) {
+    global.GLOBAL_LOOK_DIR   = 0;
+}
+if (!variable_global_exists("GLOBAL_LOOK_PITCH")) {
+    global.GLOBAL_LOOK_PITCH = -5;
+}
 
+// Apply the saved orientation to this new player
+look_dir   = global.GLOBAL_LOOK_DIR;
+look_pitch = global.GLOBAL_LOOK_PITCH;
+
+// Mouse / view init
+view_initialized = false;
 window_mouse_set(window_get_width() / 2, window_get_height() / 2);
+
 // collision radius for sliding against grid walls
 collide_radius = 24;
 
