@@ -1,10 +1,10 @@
 // Check if mouse is over button
-if (position_meeting(mouse_x, mouse_y, obj_playBtn)) {
+if (position_meeting(mouse_x, mouse_y, obj_tutorialBtn)) {
 	hovered = true;
 	
 	// If left mouse button pressed goes to level 1
 	if(mouse_check_button_pressed(mb_left)){
-		room_goto(rm_mainlvl);
+		room_goto(rm_tutoriallvl);
 	}
 } else {
 	hovered = false;
