@@ -97,6 +97,7 @@
     {"id":{"name":"Bullet","path":"sprites/Bullet/Bullet.yy",},},
     {"id":{"name":"Enemy_Walk","path":"sprites/Enemy_Walk/Enemy_Walk.yy",},},
     {"id":{"name":"Health_Pickup","path":"sprites/Health_Pickup/Health_Pickup.yy",},},
+    {"id":{"name":"Knife_effect","path":"sprites/Knife_effect/Knife_effect.yy",},},
     {"id":{"name":"spr_bloodyFloor","path":"sprites/spr_bloodyFloor/spr_bloodyFloor.yy",},},
     {"id":{"name":"spr_bloodyFloor2","path":"sprites/spr_bloodyFloor2/spr_bloodyFloor2.yy",},},
     {"id":{"name":"spr_ceiling","path":"sprites/spr_ceiling/spr_ceiling.yy",},},

@@ -72,6 +72,7 @@
     {"name":"Bullet","order":15,"path":"sprites/Bullet/Bullet.yy",},
     {"name":"Enemy_Walk","order":8,"path":"sprites/Enemy_Walk/Enemy_Walk.yy",},
     {"name":"Health_Pickup","order":14,"path":"sprites/Health_Pickup/Health_Pickup.yy",},
+    {"name":"Knife_effect","order":33,"path":"sprites/Knife_effect/Knife_effect.yy",},
     {"name":"spr_bloodyFloor","order":27,"path":"sprites/spr_bloodyFloor/spr_bloodyFloor.yy",},
     {"name":"spr_bloodyFloor2","order":26,"path":"sprites/spr_bloodyFloor2/spr_bloodyFloor2.yy",},
     {"name":"spr_ceiling","order":29,"path":"sprites/spr_ceiling/spr_ceiling.yy",},
