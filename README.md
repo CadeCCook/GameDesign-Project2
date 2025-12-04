@@ -7,12 +7,12 @@ Artist: Estera Rasek
 Designer: Jonathan Moy
 
 How to Play:
--Forward - W
--Backward - S
--Left - A
--Right - D
--Look Around - Mouse
--Attack - Left Click
+    Forward - W
+    Backward - S
+    Left - A
+    Right - D
+    Look Around - Mouse
+    Attack - Left Click
 
 Cheat Codes:
 -Press F1 to toggle minimap
