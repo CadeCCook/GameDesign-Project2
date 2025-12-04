@@ -61,7 +61,7 @@ function world_build_floor(LEVEL)
             var tile = global.WORLD_GRID[idx];
 
             // Skip pits and goal tiles – they have no floor
-            if (tile == 2 || tile == 5) {
+            if (tile == 2 || tile == 5 || tile == 9) {
 				continue;
 			}
 

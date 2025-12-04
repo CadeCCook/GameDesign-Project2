@@ -33,6 +33,7 @@
     {"name":"obj_player","order":1,"path":"objects/obj_player/obj_player.yy",},
     {"name":"obj_slash_fx","order":5,"path":"objects/obj_slash_fx/obj_slash_fx.yy",},
     {"name":"obj_storyIntro","order":11,"path":"objects/obj_storyIntro/obj_storyIntro.yy",},
+    {"name":"obj_trapButton","order":17,"path":"objects/obj_trapButton/obj_trapButton.yy",},
     {"name":"obj_tutorialBtn","order":5,"path":"objects/obj_tutorialBtn/obj_tutorialBtn.yy",},
     {"name":"obj_world","order":3,"path":"objects/obj_world/obj_world.yy",},
     {"name":"rm_creditsScreen","order":6,"path":"rooms/rm_creditsScreen/rm_creditsScreen.yy",},

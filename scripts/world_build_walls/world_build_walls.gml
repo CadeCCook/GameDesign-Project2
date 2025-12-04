@@ -90,6 +90,13 @@ function world_build_walls() {
             if (cell == 5) {
                 continue;
             }
+			// 9 = Trap Floor
+			if (cell == 9) {
+                var pit_x = (ix + 0.5) * c;
+                var pit_y = (jy + 0.5) * c;
+                instance_create_layer(pit_x, pit_y, "Instances", obj_trapButton);
+                continue;
+            }
 
             // ----------------------------------------
             // WALL TYPES:
