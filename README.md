@@ -7,16 +7,16 @@ Artist: Estera Rasek
 Designer: Jonathan Moy
 
 How to Play:
-Forward - W
-Backward - S
-Left - A
-Right - D
-Look Around - Mouse
-Attack - Left Click
+-Forward - W
+-Backward - S
+-Left - A
+-Right - D
+-Look Around - Mouse
+-Attack - Left Click
 
 Cheat Codes:
-Press F1 to toggle minimap
-Press Tab to unlock cursor
+-Press F1 to toggle minimap
+-Press Tab to unlock cursor
 - Details about minimap functions:
     Minimap shows the current layout of the level and different tiles are color coordinated.
     Pressing shift allows you to choose a different tile to place including - Heart Pickups, Walls, Pits, Wall (Torches), Wall (Trap), and Enemies.
