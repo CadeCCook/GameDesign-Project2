@@ -6,6 +6,8 @@ function world_traps_fire_all()
 
         var bx = x + lengthdir_x( fire_offset, fire_dir);
         var by = y + lengthdir_y( fire_offset, fire_dir);
+		
+		audio_play_sound(_187707__pfranzen__blowgun, 1, false);
 
         var b = instance_create_layer(bx, by, "Instances", obj_trapBullet);
         b.direction = fire_dir;

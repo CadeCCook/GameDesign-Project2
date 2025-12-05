@@ -1,0 +1,26 @@
+{
+  "$GMSound":"v2",
+  "%Name":"_777164__yuliana_yurukova__steps",
+  "audioGroupId":{
+    "name":"audiogroup_default",
+    "path":"audiogroups/audiogroup_default",
+  },
+  "bitDepth":1,
+  "channelFormat":0,
+  "compression":0,
+  "compressionQuality":4,
+  "conversionMode":0,
+  "duration":29.13118,
+  "exportDir":"",
+  "name":"_777164__yuliana_yurukova__steps",
+  "parent":{
+    "name":"Sounds",
+    "path":"folders/Sounds.yy",
+  },
+  "preload":false,
+  "resourceType":"GMSound",
+  "resourceVersion":"2.0",
+  "sampleRate":44100,
+  "soundFile":"_777164__yuliana_yurukova__steps.wav",
+  "volume":0.3,
+}

@@ -53,6 +53,21 @@
     x = _moved[0];
     y = _moved[1];
 	
+	var move_len = sqrt(dx*dx + dy*dy);
+    var is_moving = (move_len > 0.1);
+
+    if (is_moving) {
+        if (step_sound_handle == -1 || !audio_is_playing(step_sound_handle)) {
+            step_sound_handle = audio_play_sound(_777164__yuliana_yurukova__steps, 0, true);
+
+        }
+    } else {
+        if (step_sound_handle != -1) {
+            audio_stop_sound(step_sound_handle);
+            step_sound_handle = -1;
+        }
+    }
+	
     // --- Push player out of enemies so we can't walk through them ---
     with (obj_enemy)
     {
@@ -83,6 +98,16 @@ if (attack_armed && mouse_check_button_pressed(mb_left) && swing_timer <= 0) {
     swing_timer = sword_cooldown;
 
     global.hud_attack_trigger = true;
+	
+	if (slash_handle != -1) {
+        audio_stop_sound(slash_handle);
+    }
+
+    // start new slash
+    slash_handle = audio_play_sound(_263595__porkmuncher__swoosh, 1, false);
+
+    // kill it after ~0.25 seconds (tweak this)
+    alarm[1] = round(room_speed * 0.18);
 
     var hits = melee_hit_cone(x, y, look_dir,
                               sword_range,
@@ -91,6 +116,7 @@ if (attack_armed && mouse_check_button_pressed(mb_left) && swing_timer <= 0) {
                               sword_knockback);
 
     if (hits > 0) {
+		audio_play_sound(_35213__abyssmal__slashkut, 1, false);
         var fx = instance_create_layer(0, 0, "Instances", obj_slash_fx);
         fx.use_reticle = true;
     }
@@ -128,6 +154,7 @@ if (hp <= 0) {
 
 var inEnd = instance_position(x,y, obj_end);
 if (inEnd) {
+	audio_play_sound(_388013__supersplat1__door_opening_and_closing, 1, false);
 	room_goto(rm_winScreen);
 }
 

@@ -58,3 +58,6 @@ if (!variable_global_exists("HUD_WEAPON_SCALE")) global.HUD_WEAPON_SCALE = 0.55;
 if (!variable_global_exists("story_active")) {
     global.story_active = false;
 }
+
+step_sound_handle = -1;
+slash_handle = -1;

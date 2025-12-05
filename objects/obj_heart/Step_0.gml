@@ -11,8 +11,9 @@ if (dist <= pickup_radius) {
     if (obj_player.hp < obj_player.max_hp) {
         obj_player.hp = clamp(obj_player.hp + pickup_amount, 0, obj_player.max_hp);
     }
+	
+	audio_play_sound(_238855__pearcewilsonking__collected_item, 1, false);
 
-    // Consume the pickup even if at max HP (you can remove this if you only
-    // want it to disappear when it actually heals)
+    // Consume the pickup even if at max HP
     instance_destroy();
 }

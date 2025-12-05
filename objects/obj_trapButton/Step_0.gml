@@ -13,8 +13,9 @@ var dist = sqrt(dx*dx + dy*dy);
 // “stepping on” the button
 if (dist <= trigger_radius && cooldown_timer <= 0) {
 
+	audio_play_sound(_466272__proolsen__pressure_plate, 0, false);
     // fire all traps
     world_traps_fire_all();
 
-    cooldown_timer = 90; // 1.5 seconds @ 60 FPS before it can trigger again
+    cooldown_timer = 90;
 }
