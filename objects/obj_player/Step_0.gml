@@ -123,7 +123,7 @@ if (keyboard_check_pressed(vk_tab)) {
 }
 
 if (hp <= 0) {
-	room_restart();
+	room_goto(rm_loseScreen)
 }
 
 var inEnd = instance_position(x,y, obj_end);

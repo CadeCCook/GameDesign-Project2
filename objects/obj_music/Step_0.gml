@@ -22,11 +22,11 @@ switch (room) {
         break;
 
     case rm_winScreen:
-        new_track = forest;
+        new_track = cave_themeb4;
         break;
 
     case rm_loseScreen:
-        new_track = forest;
+        new_track = cave_themeb4;
         break;
 }
 
