@@ -9,3 +9,4 @@ proj_mat = undefined;
 instance_create_depth(x, y, 0, obj_player);
 
 instance_create_depth(x, y, 0,obj_hud);
+

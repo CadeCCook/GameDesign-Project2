@@ -13,7 +13,8 @@ world_build_floor(LEVEL);
 world_place_enemy(LEVEL);
 world_place_end(LEVEL);
 world_place_hearts();
-world_place_spawn(LEVEL)
+world_place_spawn(LEVEL);
+world_place_torch_light(LEVEL);
 
 // Random hearts spawn in the main room only
 if (room == rm_mainlvl) {

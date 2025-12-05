@@ -1,7 +1,7 @@
 /// @description Draw the 3D world
 draw_clear(c_black);
 
-// 3D projections require a view and projection matrix
+// Camera
 var camera = camera_get_active();
 
 var xfrom = obj_player.x;
@@ -17,29 +17,38 @@ camera_set_view_mat(camera, view_mat);
 camera_set_proj_mat(camera, proj_mat);
 camera_apply(camera);
 
-//fog, mainly test might implement onto more later
+// Shaders
+shader_set(shd_fog_and_lighting);
 
-var fog_col = c_grey;
-gpu_set_fog(true, fog_col, 1200, 8000);
+// Fog settings
+var FOG_START = 100;
+var FOG_END = 1000;
+shader_set_uniform_f(shader_get_uniform(shd_fog_and_lighting, "fogStart"), FOG_START);
+shader_set_uniform_f(shader_get_uniform(shd_fog_and_lighting, "fogEnd"), FOG_END);
 
+// Lighting settings
+var MAX_LIGHTS = 4;
+var AMBIENT_LIGHT = [0.3, 0.3, 0.3, 1.0];
 
-/*
-// Everything must be drawn after the 3D projection has been set
-gpu_set_texrepeat(true);
-vertex_submit(vbuffer, pr_trianglelist, ground_tex);
-gpu_set_texrepeat(false);
-*/
+// Get closest lights to player
+var lights = lighting_get_closest_lights(obj_player.x, obj_player.y, obj_player.z, MAX_LIGHTS);
 
+// Count active lights
+var num_active_lights = 0;
+for (var i = 0; i < MAX_LIGHTS; i++) {
+    if (lights[i].range > 1) num_active_lights++;
+}
 
-shader_reset();
+// Apply lighting to shader
+lighting_set_shader_uniforms(shd_fog_and_lighting, lights, num_active_lights, AMBIENT_LIGHT);
 
-
+// Draw World
 world_draw_walls();
 world_draw_ceiling();
 world_draw_floor();
-world_draw_end()
+world_draw_end();
 
-// Sorted billboard pass
+shader_reset();
+
+// Draw Billboard Sprites
 billboard_draw_sorted();
-
-
