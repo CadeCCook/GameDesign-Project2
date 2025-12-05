@@ -1,5 +1,5 @@
-light_color = [1.0, 0.75, 0.5, 1.0];
-light_range = 200;
+light_color = [1.2, 0.9, 0.7, 1.0];
+light_range = 500;
 z = 120;
 
 

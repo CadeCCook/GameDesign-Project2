@@ -25,10 +25,6 @@
         window_mouse_set(cx, cy);
     }
 
-    if (keyboard_check_direct(vk_escape)) {
-        game_end();
-    }
-
     var move_speed = 4;
     var dx = 0;
     var dy = 0;

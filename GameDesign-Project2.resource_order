@@ -34,6 +34,7 @@
     {"name":"obj_playAgainBtn","order":1,"path":"objects/obj_playAgainBtn/obj_playAgainBtn.yy",},
     {"name":"obj_playBtn","order":2,"path":"objects/obj_playBtn/obj_playBtn.yy",},
     {"name":"obj_player","order":1,"path":"objects/obj_player/obj_player.yy",},
+    {"name":"obj_quitManager","order":21,"path":"objects/obj_quitManager/obj_quitManager.yy",},
     {"name":"obj_slash_fx","order":5,"path":"objects/obj_slash_fx/obj_slash_fx.yy",},
     {"name":"obj_storyIntro","order":11,"path":"objects/obj_storyIntro/obj_storyIntro.yy",},
     {"name":"obj_trapButton","order":17,"path":"objects/obj_trapButton/obj_trapButton.yy",},

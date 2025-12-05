@@ -14,7 +14,7 @@ function draw_sprite_billboard(sprite, subimage, xx, yy, zz, desired_size = 128)
 
     shader_set_uniform_f(uFogS, 400.0);
     shader_set_uniform_f(uFogE, 2000.0);
-    shader_set_uniform_f(uMinBr, 1.0);
+    shader_set_uniform_f(uMinBr, 0.1);
     shader_set_uniform_f(uMinAl, 0.15);
 
     // calculate scaling ratio based on desired size
