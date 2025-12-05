@@ -17,10 +17,15 @@ if (instance_exists(obj_player)) {
     var dy   = obj_player.y - y;
     var dist = sqrt(dx*dx + dy*dy);
 
-    if (dist < 16 && abs(z - obj_player.z) < 32) {
+    // More generous hit radius + vertical window
+    if (dist < 40 && abs(z - obj_player.z) < 64) {
         with (obj_player) {
             hp = max(0, hp - other.damage);
         }
+
+        // Optional: tiny feedback if you want
+        // hit_flash = 8;
+
         instance_destroy();
         exit;
     }

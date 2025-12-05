@@ -22,5 +22,5 @@
   "resourceVersion":"2.0",
   "sampleRate":44100,
   "soundFile":"_333832__nick121087__demonic_woman_scream.wav",
-  "volume":0.88,
+  "volume":0.5,
 }
