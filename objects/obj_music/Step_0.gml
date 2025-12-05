@@ -7,6 +7,9 @@ switch (room) {
 	case rm_mainlvl:
 		new_track = forest;
 		break;
+	case rm_tutoriallvl:
+		new_track = forest;
+		break;
 }
 
 if (new_track != current_track) {
