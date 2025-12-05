@@ -9,7 +9,6 @@ function world_build_walls() {
         global.VFMT_WALL = vertex_format_end();
     }
 
-
     // Delete any old buffers
     if (variable_global_exists("WALL_VB") && global.WALL_VB != -1) {
         vertex_delete_buffer(global.WALL_VB);
@@ -26,6 +25,10 @@ function world_build_walls() {
     if (variable_global_exists("WALL_VB_TRAP") && global.WALL_VB_TRAP != -1) {
         vertex_delete_buffer(global.WALL_VB_TRAP);
     }
+    // ADD THIS: Delete old end wall buffer
+    if (variable_global_exists("WALL_VB_END") && global.WALL_VB_END != -1) {
+        vertex_delete_buffer(global.WALL_VB_END);
+    }
 
     // --------------------------------------------
     //  - plain walls       -> spr_wall
@@ -33,39 +36,40 @@ function world_build_walls() {
     //  - bloody walls      -> spr_wallBlood
     //  - torch walls       -> spr_wallTorch
     //  - trap walls        -> spr_wallTrap
+    //  - end walls         -> spr_end
     // --------------------------------------------
     var vb_plain = vertex_create_buffer();
     var vb_crack = vertex_create_buffer();
     var vb_blood = vertex_create_buffer();
     var vb_torch = vertex_create_buffer();
     var vb_trap  = vertex_create_buffer();
+    var vb_end   = vertex_create_buffer(); // ADD THIS
 
     vertex_begin(vb_plain, global.VFMT_WALL);
     vertex_begin(vb_crack, global.VFMT_WALL);
     vertex_begin(vb_blood, global.VFMT_WALL);
     vertex_begin(vb_torch, global.VFMT_WALL);
     vertex_begin(vb_trap,  global.VFMT_WALL);
-
+    vertex_begin(vb_end,   global.VFMT_WALL); // ADD THIS
 
     var add_quad = function(_vb,
                         x1,y1,z1,
                         x2,y2,z2,
                         x3,y3,z3,
                         x4,y4,z4)
-{
-    var color = global.WALL_COLOR;
+    {
+        var color = global.WALL_COLOR;
 
-    // triangle 1
-    vertex_add_point(_vb, x1,y1,z1,  0,0,1,  0,1, color, 1); // bottom-left
-    vertex_add_point(_vb, x2,y2,z2,  0,0,1,  1,1, color, 1); // bottom-right
-    vertex_add_point(_vb, x3,y3,z3,  0,0,1,  1,0, color, 1); // top-right
+        // triangle 1
+        vertex_add_point(_vb, x1,y1,z1,  0,0,1,  0,1, color, 1); // bottom-left
+        vertex_add_point(_vb, x2,y2,z2,  0,0,1,  1,1, color, 1); // bottom-right
+        vertex_add_point(_vb, x3,y3,z3,  0,0,1,  1,0, color, 1); // top-right
 
-    // triangle 2
-    vertex_add_point(_vb, x3,y3,z3,  0,0,1,  1,0, color, 1); // top-right
-    vertex_add_point(_vb, x4,y4,z4,  0,0,1,  0,0, color, 1); // top-left
-    vertex_add_point(_vb, x1,y1,z1,  0,0,1,  0,1, color, 1); // bottom-left
-}
-
+        // triangle 2
+        vertex_add_point(_vb, x3,y3,z3,  0,0,1,  1,0, color, 1); // top-right
+        vertex_add_point(_vb, x4,y4,z4,  0,0,1,  0,0, color, 1); // top-left
+        vertex_add_point(_vb, x1,y1,z1,  0,0,1,  0,1, color, 1); // bottom-left
+    }
 
     var c  = global.WORLD_CELL;
     var Hh = global.WALL_HEIGHT;
@@ -86,12 +90,8 @@ function world_build_walls() {
                 continue;
             }
 
-            // 5 = goal/end: no walls here; world_place_end()
-            if (cell == 5) {
-                continue;
-            }
-			// 9 = Trap Floor
-			if (cell == 9) {
+            // 9 = Trap Floor
+            if (cell == 9) {
                 var pit_x = (ix + 0.5) * c;
                 var pit_y = (jy + 0.5) * c;
                 instance_create_layer(pit_x, pit_y, "Instances", obj_trapButton);
@@ -102,6 +102,7 @@ function world_build_walls() {
             // WALL TYPES:
             //  1 = normal wall  (random: plain/crack/blood)
             //  4 = wall (Torch)
+            //  5 = wall (End)    // ADDED
             //  6 = wall (Trap)
             // ----------------------------------------
             var vb_tile = noone;
@@ -119,6 +120,10 @@ function world_build_walls() {
                     vb_tile = vb_torch;
                     break;
 
+                case 5: // ADD THIS CASE
+                    vb_tile = vb_end;
+                    break;
+
                 case 6:
                     vb_tile = vb_trap;
                     break;
@@ -126,35 +131,35 @@ function world_build_walls() {
                 default:
                     continue;
             }
-			
-			// If this is a trap wall (cell == 6), create a shooter object
-        if (cell == 6) {
-            var shoot_dir = -1;
+            
+            // If this is a trap wall (cell == 6), create a shooter object
+            if (cell == 6) {
+                var shoot_dir = -1;
 
-            // Pick a facing direction based on which neighbouring cell is open
-            if (!world_cell_solid(ix - 1, jy)) {
-                shoot_dir = 180;   // open to the left  (-x)
-            } else if (!world_cell_solid(ix + 1, jy)) {
-                shoot_dir = 0;     // open to the right (+x)
-            } else if (!world_cell_solid(ix, jy - 1)) {
-                shoot_dir = 90;    // open to the front (toward -y)
-            } else if (!world_cell_solid(ix, jy + 1)) {
-                shoot_dir = 270;   // open to the back  (+y)
+                // Pick a facing direction based on which neighbouring cell is open
+                if (!world_cell_solid(ix - 1, jy)) {
+                    shoot_dir = 180;   // open to the left  (-x)
+                } else if (!world_cell_solid(ix + 1, jy)) {
+                    shoot_dir = 0;     // open to the right (+x)
+                } else if (!world_cell_solid(ix, jy - 1)) {
+                    shoot_dir = 90;    // open to the front (toward -y)
+                } else if (!world_cell_solid(ix, jy + 1)) {
+                    shoot_dir = 270;   // open to the back  (+y)
+                }
+
+                if (shoot_dir >= 0) {
+                    var sx = (ix + 0.5) * c;
+                    var sy = (jy + 0.5) * c;
+
+                    var shooter = instance_create_layer(sx, sy, "Instances", obj_wallTrapShooter);
+                    shooter.fire_dir = shoot_dir;
+                }
             }
-
-            if (shoot_dir >= 0) {
-                var sx = (ix + 0.5) * c;
-                var sy = (jy + 0.5) * c;
-
-                var shooter = instance_create_layer(sx, sy, "Instances", obj_wallTrapShooter);
-                shooter.fire_dir = shoot_dir;
-            }
-        }
 
             var wx = ix * c;
             var wy = jy * c;
 
-			// Left face
+            // Left face
             if (!world_cell_solid(ix - 1, jy)) {
                 add_quad(vb_tile,
                     wx,      wy,      0,
@@ -192,16 +197,17 @@ function world_build_walls() {
         }
     }
 
-
     vertex_end(vb_plain);
     vertex_end(vb_crack);
     vertex_end(vb_blood);
     vertex_end(vb_torch);
     vertex_end(vb_trap);
+    vertex_end(vb_end);
 
     global.WALL_VB        = vb_plain;
     global.WALL_VB_CRACK  = vb_crack;
     global.WALL_VB_BLOOD  = vb_blood;
     global.WALL_VB_TORCH  = vb_torch;
     global.WALL_VB_TRAP   = vb_trap;
+    global.WALL_VB_END    = vb_end;
 }

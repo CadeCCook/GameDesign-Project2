@@ -34,6 +34,9 @@
     "name":"Door_Tile",
     "path":"sprites/Door_Tile/Door_Tile.yy",
   },
-  "spriteMaskId":null,
-  "visible":true,
+  "spriteMaskId":{
+    "name":"spr_end_collision",
+    "path":"sprites/spr_end_collision/spr_end_collision.yy",
+  },
+  "visible":false,
 }

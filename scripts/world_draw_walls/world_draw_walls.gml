@@ -26,6 +26,12 @@ function world_draw_walls() {
         var tex_torch = sprite_get_texture(spr_wallTorch, 0);
         vertex_submit(global.WALL_VB_TORCH, pr_trianglelist, tex_torch);
     }
+	
+	// End walls (cell = 5)
+    if (variable_global_exists("WALL_VB_END") && global.WALL_VB_END != -1) {
+        var tex_end = sprite_get_texture(Door_Tile, 0);
+        vertex_submit(global.WALL_VB_END, pr_trianglelist, tex_end);
+	}
 
     // Trap walls (cell = 6)
     if (variable_global_exists("WALL_VB_TRAP") && global.WALL_VB_TRAP != -1) {

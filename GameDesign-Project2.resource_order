@@ -95,6 +95,7 @@
     {"name":"spr_ceiling","order":29,"path":"sprites/spr_ceiling/spr_ceiling.yy",},
     {"name":"spr_creditsButton","order":6,"path":"sprites/spr_creditsButton/spr_creditsButton.yy",},
     {"name":"spr_creditsScreen","order":9,"path":"sprites/spr_creditsScreen/spr_creditsScreen.yy",},
+    {"name":"spr_end_collision","order":38,"path":"sprites/spr_end_collision/spr_end_collision.yy",},
     {"name":"spr_end","order":9,"path":"sprites/spr_end/spr_end.yy",},
     {"name":"spr_enemy_attack","order":17,"path":"sprites/spr_enemy_attack/spr_enemy_attack.yy",},
     {"name":"spr_enemy","order":6,"path":"sprites/spr_enemy/spr_enemy.yy",},
