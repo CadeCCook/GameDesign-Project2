@@ -7,6 +7,7 @@ function world_cell_solid(ci, cj) {
 
     // 1 = normal wall
     // 4 = wall (Torch)
+    // 5 = goal / exit (door)
     // 6 = wall (Trap)
-    return (v == 1) || (v == 4) || (v == 6);
+    return (v == 1) || (v == 4) || (v == 5) || (v == 6);
 }

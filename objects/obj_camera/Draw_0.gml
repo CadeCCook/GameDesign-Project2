@@ -46,7 +46,6 @@ lighting_set_shader_uniforms(shd_fog_and_lighting, lights, num_active_lights, AM
 world_draw_walls();
 world_draw_ceiling();
 world_draw_floor();
-world_draw_end();
 
 shader_reset();
 

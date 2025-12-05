@@ -12,7 +12,7 @@ function world_traps_fire_all()
         b.speed     = spd;
 
         // Start slightly above and out from the wall
-        b.z  = 94;
+        b.z  = 96;
         b.vz = -4;
     }
 }

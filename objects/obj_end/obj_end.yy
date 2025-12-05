@@ -31,8 +31,8 @@
   "resourceVersion":"2.0",
   "solid":false,
   "spriteId":{
-    "name":"spr_end",
-    "path":"sprites/spr_end/spr_end.yy",
+    "name":"Door_Tile",
+    "path":"sprites/Door_Tile/Door_Tile.yy",
   },
   "spriteMaskId":null,
   "visible":true,

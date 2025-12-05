@@ -17,10 +17,3 @@ world_place_hearts();
 world_place_trap_buttons();
 world_place_spawn(LEVEL);
 world_place_torch_light(LEVEL);
-
-
-// Random hearts spawn in the main room only
-if (room == rm_mainlvl) {
-    world_spawn_random_hearts(4, 5);
-}
-

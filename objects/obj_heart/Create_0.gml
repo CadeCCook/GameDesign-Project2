@@ -1,7 +1,8 @@
 pickup_amount = 25;
 
-pickup_radius = 40;
+// how close the player needs to be in 2D to “touch” it
+pickup_radius = 32;
 
-// We’ll billboard it like the enemy, close to the floor
-heart_z = 8;          // small height above the floor
-image_speed = 0;      // static heart sprite (change if animated)
+// small height above the floor for drawing
+heart_z    = 8;
+image_speed = 0;

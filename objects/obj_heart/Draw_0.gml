@@ -1,4 +1,4 @@
-var z = 16; // tweak if you want it higher/lower
+var z = 16; // height above floor
 
 // Billboard sprite that always faces the camera
 draw_sprite_billboard(
@@ -7,5 +7,5 @@ draw_sprite_billboard(
     x,              // world X
     y,              // world Y
     z,              // world Z height
-    c_white         // colour (no tint)
+    64              // desired height of the heart in world units
 );
