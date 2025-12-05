@@ -7,16 +7,16 @@ var sz = MM_cell_px;
 var px = MM_pad;
 var py = MM_pad;
 
-// GUI-space mouse pos
-var mx = device_mouse_x(0);
-var my = device_mouse_y(0);
+// Mouse position in window / GUI coordinates
+var mx = window_mouse_get_x();
+var my = window_mouse_get_y();
 
 // Grid coords under mouse
 var gx = floor((mx - px) / sz);
 var gy = floor((my - py) / sz);
 var inside = (gx >= 0 && gx < W && gy >= 0 && gy < H);
 
-// --- Painting -------------------------------------------------------
+// --- Painting ---
 if (inside) {
 
     // LEFT CLICK = paint according to current brush
@@ -42,13 +42,16 @@ if (inside) {
             case 4: // enemy spawn
                 world_set_enemy(gx, gy);
                 break;
-				
-			case 5: // heart
+
+            case 5: // heart
                 world_set_heart(gx, gy);
+                break;
+
+            case 6: // trap button
+                world_set_trap_button(gx, gy);
                 break;
         }
 
-        // Rebuild geometry so you can see changes while testing
         world_build_walls();
         world_place_hearts();
     }
@@ -56,13 +59,11 @@ if (inside) {
     // RIGHT CLICK = clear tile
     if (mouse_check_button_pressed(mb_right)) {
         world_clear_cell(gx, gy);
-
         world_build_walls();
-        //world_build_floor(global.WORLD_GRID);
     }
 }
 
-// Ctrl+C to dump array for pasting into LEVEL in world_init.gml
+// Ctrl+C to dump array for pasting into LEVEL
 if (keyboard_check(vk_control) && keyboard_check_pressed(ord("C"))) {
     world_grid_dump_array();
 }

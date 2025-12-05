@@ -8,6 +8,7 @@ MM_col_empty = make_color_rgb(30, 80, 30);
 MM_col_wall  = make_color_rgb(180, 180, 180);
 MM_col_grid  = make_color_rgb(60, 60, 60);
 MM_col_hover = make_color_rgb(240, 240, 80);
+MM_col_trapButton = make_color_rgb(80, 150, 255);
 
 // ----- Editing brush state -----
 // 0 = wall
@@ -15,8 +16,10 @@ MM_col_hover = make_color_rgb(240, 240, 80);
 // 2 = wall (trap)
 // 3 = hole
 // 4 = enemy
+// 5 = heart
+// 6 = trap button (floor)
 edit_mode      = 0;
-edit_mode_max  = 5;
+edit_mode_max  = 6;
 
 // Optional extra colours so we can see special tiles
 MM_col_pit       = make_color_rgb(20, 20, 20);

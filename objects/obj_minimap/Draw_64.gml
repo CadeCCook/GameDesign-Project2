@@ -33,6 +33,7 @@ for (var r = 0; r < H; r++) {
             case 5: col = MM_col_hover;      break; // goal
             case 6: col = MM_col_wallTrap;   break;
 			case 7: col = MM_col_heart;      break;
+			case 9: col = MM_col_trapButton; break;
             default: col = MM_col_empty;     break;
         }
 
@@ -53,13 +54,14 @@ for (var gx = 0; gx <= W; gx++) {
 }
 
 // ----- Hover + legend -----
-var mx = device_mouse_x(0);
-var my = device_mouse_y(0);
+var mx = window_mouse_get_x();
+var my = window_mouse_get_y();
+
 var gx = floor((mx - px) / sz);
 var gy = floor((my - py) / sz);
 
 // Legend position (fixed)
-var legend_x = 16;                    // <- define once, outside the if
+var legend_x = 16;
 var legend_y = py + H * sz + 8;
 
 // Build a small label for the current brush
@@ -71,6 +73,7 @@ switch (edit_mode) {
     case 3: mode_name = "Hole";         break;
     case 4: mode_name = "Enemy";        break;
 	case 5: mode_name = "Heart";        break;
+	case 6: mode_name = "TRAP BUTTON"; break;
 }
 
 if (gx >= 0 && gx < W && gy >= 0 && gy < H) {

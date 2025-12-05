@@ -126,6 +126,30 @@ function world_build_walls() {
                 default:
                     continue;
             }
+			
+			// If this is a trap wall (cell == 6), create a shooter object
+        if (cell == 6) {
+            var shoot_dir = -1;
+
+            // Pick a facing direction based on which neighbouring cell is open
+            if (!world_cell_solid(ix - 1, jy)) {
+                shoot_dir = 180;   // open to the left  (-x)
+            } else if (!world_cell_solid(ix + 1, jy)) {
+                shoot_dir = 0;     // open to the right (+x)
+            } else if (!world_cell_solid(ix, jy - 1)) {
+                shoot_dir = 90;    // open to the front (toward -y)
+            } else if (!world_cell_solid(ix, jy + 1)) {
+                shoot_dir = 270;   // open to the back  (+y)
+            }
+
+            if (shoot_dir >= 0) {
+                var sx = (ix + 0.5) * c;
+                var sy = (jy + 0.5) * c;
+
+                var shooter = instance_create_layer(sx, sy, "Instances", obj_wallTrapShooter);
+                shooter.fire_dir = shoot_dir;
+            }
+        }
 
             var wx = ix * c;
             var wy = jy * c;

@@ -16,6 +16,8 @@ function world_index(ix, iy) {
 /// 5 = goal / exit
 /// 6 = wall (trap)
 /// 7 = heart pickup
+/// 8 = player spawn (from LEVEL array)
+/// 9 = trap floor button
 /// ------------------------------------------------------------------
 
 function world_set_cell(ix, iy, value) {
@@ -32,6 +34,8 @@ function world_set_wall_torch(ix, iy)  { world_set_cell(ix, iy, 4); }
 function world_set_goal(ix, iy)        { world_set_cell(ix, iy, 5); }
 function world_set_wall_trap(ix, iy)   { world_set_cell(ix, iy, 6); }
 function world_set_heart(ix, iy)       { world_set_cell(ix, iy, 7); }
+
+function world_set_trap_button(ix, iy) { world_set_cell(ix, iy, 9); }
 
 // Clear helpers
 function world_clear_cell(ix, iy)      { world_set_cell(ix, iy, 0); }

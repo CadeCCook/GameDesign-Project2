@@ -14,6 +14,7 @@ world_place_enemy(LEVEL);
 world_place_boss(LEVEL);
 world_place_end(LEVEL);
 world_place_hearts();
+world_place_trap_buttons();
 world_place_spawn(LEVEL);
 world_place_torch_light(LEVEL);
 

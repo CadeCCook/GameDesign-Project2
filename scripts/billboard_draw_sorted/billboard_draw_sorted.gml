@@ -29,6 +29,20 @@ function billboard_draw_sorted() {
             array_push(list, [dx*dx + dy*dy + dz*dz, inst]);
         }
     }
+	
+	// Add trap bullets
+    if (object_exists(obj_trapBullet)) {
+        var n_b = instance_number(obj_trapBullet);
+        for (var i = 0; i < n_b; i++) {
+            var inst = instance_find(obj_trapBullet, i);
+            if (!instance_exists(inst)) continue;
+
+            var dx = inst.x - eye_x;
+            var dy = inst.y - eye_y;
+            var dz = inst.z - eye_z;
+            array_push(list, [dx*dx + dy*dy + dz*dz, inst]);
+        }
+    }
     
     // Sort far -> near
     array_sort(list, function(a,b){ return b[0] - a[0]; });

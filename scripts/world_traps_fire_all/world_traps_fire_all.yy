@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"world_traps_fire_all",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"world_traps_fire_all",
+  "parent":{
+    "name":"Scripts",
+    "path":"folders/Scripts.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}
