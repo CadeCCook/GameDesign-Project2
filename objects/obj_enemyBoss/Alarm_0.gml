@@ -1,6 +1,7 @@
 can_attack = true;
 
 
-/*
-move_left = !move_left;
-alarm_running = false;
+if (scream_handle != -1) {
+    audio_stop_sound(scream_handle);
+    scream_handle = -1;
+}

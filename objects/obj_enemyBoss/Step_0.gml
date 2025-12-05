@@ -70,15 +70,20 @@ if (can_see_player)
     }
 }
 
-/*
-if (move_left) {
-    x -= 1;
+//sound
+if (!is_dead)
+{
+    growl_timer--;
+
+    if (growl_timer <= 0)
+    {
+        //Only growl if the player is close or visible
+        if (dist_to_player < 384 || can_see_player)
+        {
+            audio_play_sound(ambience_1, 0, false);
+        }
+
+        //timer for next growl
+        growl_timer = irandom_range(180, 420);
+    }
 }
-else {
-    x += 1;
-}
-if (!alarm_running) {
-    alarm_set(0, 100);
-    alarm_running = true;
-}
-*/

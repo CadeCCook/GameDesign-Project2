@@ -27,3 +27,6 @@ is_dead = false;
 hit_flash = 0;
 to_destroy = false;
 
+//sound
+growl_timer = irandom_range(90, 240);
+scream_handle = -1;

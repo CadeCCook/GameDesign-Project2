@@ -88,6 +88,7 @@
     {"name":"_388013__supersplat1__door_opening_and_closing","order":8,"path":"sounds/_388013__supersplat1__door_opening_and_closing/_388013__supersplat1__door_opening_and_closing.yy",},
     {"name":"_466272__proolsen__pressure_plate","order":6,"path":"sounds/_466272__proolsen__pressure_plate/_466272__proolsen__pressure_plate.yy",},
     {"name":"_777164__yuliana_yurukova__steps","order":5,"path":"sounds/_777164__yuliana_yurukova__steps/_777164__yuliana_yurukova__steps.yy",},
+    {"name":"ambience_1","order":11,"path":"sounds/ambience_1/ambience_1.yy",},
     {"name":"cave_themeb4","order":2,"path":"sounds/cave_themeb4/cave_themeb4.yy",},
     {"name":"forest","order":3,"path":"sounds/forest/forest.yy",},
     {"name":"Bullet","order":15,"path":"sprites/Bullet/Bullet.yy",},
