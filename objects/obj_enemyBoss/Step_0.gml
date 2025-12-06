@@ -1,9 +1,49 @@
-// ===== obj_enemy : Step =====
+if (!instance_exists(obj_player)) {
+    exit;
+}
+
 var px = obj_player.x;
 var py = obj_player.y;
 var dist_to_player = point_distance(x, y, px, py);
 
 enemy_vision();
+
+
+// Teleport Ability
+
+teleport_timer -= 1;
+
+if (teleport_timer <= 0) {
+
+    // Only teleport if:
+    //  - boss sees the player
+    //  - not currently in an attack animation
+    if (can_see_player && !is_attacking && dist_to_player > teleport_min_range) {
+
+        // Random chance
+        if (irandom(99) < teleport_chance) {
+
+            var back_dist = teleport_back_dist;
+            var pdir      = obj_player.look_dir;
+
+            var dx = -lengthdir_x(back_dist, pdir);
+            var dy = -lengthdir_y(back_dist, pdir);
+
+            var _pos = world_collision_move(obj_player.x, obj_player.y, dx, dy, collide_radius);
+
+            x = _pos[0];
+            y = _pos[1];
+
+            teleport_timer = irandom_range(teleport_timer_min, teleport_timer_max);
+        }
+
+    }
+
+}
+
+
+// Melee Attack
+
 
 if (can_see_player && dist_to_player <= attack_range && can_attack)
 {
@@ -20,7 +60,7 @@ if (can_see_player && dist_to_player <= attack_range && can_attack)
         // deal damage
         hp -= other.attack_damage;
 
-        // knockback amount (tweak this)
+        // knockback amount
         var kb_dist = 100;
 
         // direction from enemy (other.x,other.y) to player (x,y in this with)
@@ -49,6 +89,10 @@ if (is_attacking)
     }
 }
 
+
+// Chase logic
+
+
 // Chase player if we see them and we're not in melee range
 if (can_see_player)
 {
@@ -70,7 +114,8 @@ if (can_see_player)
     }
 }
 
-//sound
+// Sound
+
 if (!is_dead)
 {
     growl_timer--;

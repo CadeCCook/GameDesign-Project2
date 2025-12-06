@@ -141,7 +141,7 @@ if (over_pit) {
 }
 
 if (z < death_height) {
-    room_restart();
+    hp = 0;
 }
 
 if (keyboard_check_pressed(vk_tab)) {
