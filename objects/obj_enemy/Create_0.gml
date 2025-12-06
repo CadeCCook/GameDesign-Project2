@@ -9,7 +9,7 @@ collide_radius = 24;
 
 // attack
 attack_range = 64;
-attack_damage = 30;
+attack_damage = 40;
 attack_cooldown = 60;
 
 is_attacking = false;

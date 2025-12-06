@@ -1,6 +1,6 @@
 z              = 96;     // start a bit above the floor / shooter
 vz             = 4;      // initial upward kick
-gravity_accel  = -0.9;
+gravity_accel  = -0.5;
 floor_z        = 64;
 
 damage         = 25;     // HP taken from player
