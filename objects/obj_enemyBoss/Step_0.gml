@@ -33,6 +33,8 @@ if (teleport_timer <= 0) {
 
             x = _pos[0];
             y = _pos[1];
+			
+			audio_play_sound(_512217__mateusz_chenc__poof_in_cloud, 1, false);
 
             teleport_timer = irandom_range(teleport_timer_min, teleport_timer_max);
         }

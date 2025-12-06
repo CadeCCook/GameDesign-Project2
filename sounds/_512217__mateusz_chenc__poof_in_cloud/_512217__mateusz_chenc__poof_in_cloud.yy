@@ -1,6 +1,6 @@
 {
   "$GMSound":"v2",
-  "%Name":"_333832__nick121087__demonic_woman_scream",
+  "%Name":"_512217__mateusz_chenc__poof_in_cloud",
   "audioGroupId":{
     "name":"audiogroup_default",
     "path":"audiogroups/audiogroup_default",
@@ -10,9 +10,9 @@
   "compression":0,
   "compressionQuality":4,
   "conversionMode":0,
-  "duration":4.4583445,
+  "duration":0.83471656,
   "exportDir":"",
-  "name":"_333832__nick121087__demonic_woman_scream",
+  "name":"_512217__mateusz_chenc__poof_in_cloud",
   "parent":{
     "name":"Sounds",
     "path":"folders/Sounds.yy",
@@ -21,6 +21,6 @@
   "resourceType":"GMSound",
   "resourceVersion":"2.0",
   "sampleRate":44100,
-  "soundFile":"_333832__nick121087__demonic_woman_scream.wav",
-  "volume":0.35,
+  "soundFile":"_512217__mateusz_chenc__poof_in_cloud.mp3",
+  "volume":1.0,
 }
